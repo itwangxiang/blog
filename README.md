@@ -5,6 +5,6 @@
    1. 设计模式
    2. 数据结构
 
-## tool
+## tools
 
-   1. Vim
+   1. [Vim](tools/vim.md)
