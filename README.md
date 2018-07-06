@@ -1,4 +1,6 @@
-# Task
-## 阅读
-### [开发](https://github.com/itwangxiang/task/issues/1)
-- [设计模式](https://github.com/itwangxiang/task/issues/1#issue-336123715)
+# 任务 - 自己管理任务
+
+## 整理文档(doc)
+   1. 设计模式
+   2. 数据结构
+## 练习案例(demo)
