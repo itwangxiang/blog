@@ -1,6 +1,6 @@
 # Vim 使用文档
 
-> vimtutor 进入《Vim 使用教程》
+> vimtutor zh_CN 进入《Vim 使用教程》
 
 ## 模式
 
