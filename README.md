@@ -9,8 +9,8 @@
 
 ## tools
 
-  1. [Vim](tools/vim.md)
+  1. [Vim 使用文档](tools/vim.md)
 
 ## scripts
 
-  1. [set-jdk-env-variables](scripts/set-jdk-env-variables.ps1)： `Window 下设置 JAVA 环境变量`
+  1. [Window 下设置 JAVA 环境变量](scripts/set-jdk-env-variables.ps1)
