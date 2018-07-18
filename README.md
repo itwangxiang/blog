@@ -2,7 +2,7 @@
 
 ## todo
   
-  1. 设计模式
+  1. [设计模式](https://github.com/itwangxiang/docs/issues/1)
   2. 数据结构
 
 ## develop
