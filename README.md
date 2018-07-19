@@ -2,15 +2,21 @@
 
 ## todo
   
-  1. [设计模式](https://github.com/itwangxiang/docs/issues/1)
-  2. 数据结构
+- [设计模式](https://github.com/itwangxiang/docs/issues/1)
+- 数据结构
 
-## develop
+## asset
 
-## tools
+- [Window 下设置 JAVA 环境变量](asset/set-jdk-env-variables.ps1)
+- [Pac.txt](asswt/pac.txt)
 
-  1. [Vim 使用文档](tools/vim.md)
+## command
 
-## scripts
+- [Vim 文档](command/vim.md)
+- [Linux 文档](command/linux.md)
 
-  1. [Window 下设置 JAVA 环境变量](scripts/set-jdk-env-variables.ps1)
+## log
+
+### 201807
+
+- [first](logs/201807/first.md)
