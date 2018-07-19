@@ -1,5 +1,5 @@
 if [ ${PWD##*/} != "docs" ];
-  the
+  then
   echo "please run at docs."
   exit 2
 fi
