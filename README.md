@@ -7,19 +7,13 @@
 
 ## VPS
 
-### Nginx
+### Nginx - [doc](docs/vps/nginx.md)
 
-[Nginx 文档](docs/vps/nginx.md)
-
-### Linux
-
-[Linux 文档](docs/vps/linux.md)
+### Linux - [doc](docs/vps/linux.md)
 
 ## Tool
 
-### Vim
-
-[Vim 文档](docs/tool/vim.md)
+### Vim - [doc](docs/tool/vim.md)
 
 ## Asset
 
