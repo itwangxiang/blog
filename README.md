@@ -13,6 +13,8 @@
 
 ## Tool
 
+### Git - [doc](docs/tool/git.md)
+
 ### Vim - [doc](docs/tool/vim.md)
 
 ## Asset
