@@ -88,6 +88,7 @@ $ git commit --amend [file1] [file2] ...
 ```
 
 ## 分支
+
 ```bash
 # 列出所有本地分支
 $ git branch
