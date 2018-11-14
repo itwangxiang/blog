@@ -37,7 +37,7 @@ $ git config -e [--global]
 $ git config [--global] user.name "[name]"
 $ git config [--global] user.email "[email address]"
 
-# 记住密码
+# 缓存密钥
 $ git config --global credential.helper store
 ```
 
