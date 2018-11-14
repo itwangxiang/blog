@@ -1,6 +1,6 @@
 # GIT
 
-> 摘录 - http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html
+> 摘录 - [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
 ![git](../../asset/img/20181114001.png)
 
