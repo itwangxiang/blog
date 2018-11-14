@@ -9,7 +9,7 @@
 
 ### Nginx - [doc](docs/vps/nginx.md)
 
-### Linux - [doc](docs/vps/linux.md)
+### Ubuntu - [doc](docs/vps/ubuntu.md)
 
 ## Tool
 
