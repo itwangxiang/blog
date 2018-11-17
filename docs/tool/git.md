@@ -2,7 +2,10 @@
 
 > 摘录 - [常用 Git 命令清单](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)
 
+## 关系图
+
 ![git](../../asset/img/20181114001.png)
+![git](../../asset/img/20181117001.png)
 
 ## 名词
 
