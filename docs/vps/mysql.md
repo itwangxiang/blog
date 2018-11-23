@@ -40,6 +40,7 @@ ALTER USER 'todev_dev'@'%' IDENTIFIED BY '111111';
 ## 常见问题
 
 ### 无法远程连接
+
 ```bash
 ## 打开配置文件
 vi /etc/mysql/mysql.conf.d/mysqld.cnf
