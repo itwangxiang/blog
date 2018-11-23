@@ -18,17 +18,27 @@
 
 ## VPS
 
-### Nginx - [doc](docs/vps/nginx.md)
+### Nginx
 
-### Ubuntu - [doc](docs/vps/ubuntu.md)
+* [doc](docs/vps/nginx.md)
 
-### Mysql - [doc](docs/vps/mysql.md)
+### Ubuntu
+
+* [doc](docs/vps/ubuntu.md)
+
+### Mysql
+
+* [doc](docs/vps/mysql.md)
 
 ## Tool
 
-### Git - [doc](docs/tool/git.md)
+### Git
 
-### Vim - [doc](docs/tool/vim.md)
+* [doc](docs/tool/git.md)
+
+### Vim
+
+* [doc](docs/tool/vim.md)
 
 ## Asset
 
