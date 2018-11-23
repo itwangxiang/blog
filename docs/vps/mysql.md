@@ -27,6 +27,8 @@ mysql -u root -ppassword
 ## 常用sql
 
 ```mysql
+-- 设置密码安全等级
+set global validate_password_policy=0;
 -- 创建库
 Create DATABASE IF NOT EXISTS `todev_dev` default charset utf8 COLLATE utf8_general_ci;
 -- 设置 todev_dev 访问密钥
