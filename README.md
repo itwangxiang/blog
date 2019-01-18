@@ -20,25 +20,26 @@
 
 ### Nginx
 
-* [doc](docs/vps/nginx.md)
+* [Overview](docs/vps/nginx.md)
 
 ### Ubuntu
 
-* [doc](docs/vps/ubuntu.md)
+* [Overview](docs/vps/ubuntu.md)
 
 ### Mysql
 
-* [doc](docs/vps/mysql.md)
+* [Overview](docs/vps/mysql.md)
 
 ## Tool
 
 ### Git
 
-* [doc](docs/tool/git.md)
+* [Overview](docs/tool/git.md)
+* [设置代理](docs/tool/git-set-proxy.md)
 
 ### Vim
 
-* [doc](docs/tool/vim.md)
+* [Overview](docs/tool/vim.md)
 
 ## Asset
 
