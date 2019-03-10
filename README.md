@@ -2,20 +2,24 @@
 
 ## Catalog
 
+* Android
+  * [Android基础](#Android基础)
+* 设计模式  
 * [Vps](#vps)
   * [Nginx](#nginx)
   * [Ubuntu](#ubuntu)
   * [Mysql](#mysql)
+  * [Shadowsocks](https://github.com/itwangxiang/docs/wiki/VPS.Shadowsocks)
 * [Tool](#tool)
   * [Git](#git)
   * [Vim](#vim)
 * [Asset](#asset)
-
-## Todo
   
-* [设计模式](https://github.com/itwangxiang/docs/issues/1)
-* 数据结构
-* Android 知识点
+## Android
+
+### Android基础
+
+## 设计模式 [todo](https://github.com/itwangxiang/docs/issues/1)
 
 ## VPS
 
