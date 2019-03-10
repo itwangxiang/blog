@@ -2,9 +2,9 @@
 
 ## Catalog
 
-* Android
-  * [Android基础](#Android基础)
-* [Design-Patterns](Design-Patterns)  
+* [Android](#Android)
+  * [Android-基础](#Android-基础)
+* [Design-Patterns](#Design-Patterns)  
 * [Other](#other)
   * [Ubuntu](#ubuntu)
   * [Mysql](#mysql)
@@ -16,7 +16,7 @@
   
 ## Android
 
-### Android基础
+### Android-基础
 
 ## Design-Patterns
 
