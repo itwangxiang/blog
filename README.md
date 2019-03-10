@@ -4,28 +4,25 @@
 
 * Android
   * [Android基础](#Android基础)
-* 设计模式  
-* [Vps](#vps)
-  * [Nginx](#nginx)
+* [Design-Patterns](Design-Patterns)  
+* [Other](#other)
   * [Ubuntu](#ubuntu)
   * [Mysql](#mysql)
-  * [Shadowsocks](https://github.com/itwangxiang/docs/wiki/VPS.Shadowsocks)
-* [Tool](#tool)
+  * [Nginx](#nginx)
   * [Git](#git)
   * [Vim](#vim)
+  * [Shadowsocks](https://github.com/itwangxiang/docs/wiki/VPS.Shadowsocks)
 * [Asset](#asset)
   
 ## Android
 
 ### Android基础
 
-## 设计模式 [todo](https://github.com/itwangxiang/docs/issues/1)
+## Design-Patterns
 
-## VPS
+[todo](https://github.com/itwangxiang/docs/issues/1)
 
-### Nginx
-
-* [Overview](docs/vps/nginx.md)
+## Other
 
 ### Ubuntu
 
@@ -35,7 +32,9 @@
 
 * [Overview](docs/vps/mysql.md)
 
-## Tool
+### Nginx
+
+* [Overview](docs/vps/nginx.md)
 
 ### Git
 
