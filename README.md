@@ -40,10 +40,10 @@
 
 > Bind Android views and callbacks to fields and methods
 
-* Eliminate `findViewById` calls by using `@BindView` on fields.
-* Group multiple views in a list or array. Operate on all of them at once with actions, setters, or properties.
-* Eliminate anonymous inner-classes for listeners by annotating methods with `@OnClick` and others.
-* Eliminate resource lookups by using resource annotations on fields
+* 通过在字段上使用 `@BindView` 消除 `findViewById` 回调
+* 在列表或数组中组合多个视图。一次性使用操作，设置器或属性操作它们
+* 通过使用`@OnClick`和其他方法注释方法来消除侦听器的匿名内部类
+* 通过在字段上使用资源注释来消除资源查找
 
 ## Design-Patterns
 
