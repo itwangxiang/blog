@@ -5,6 +5,8 @@
 * [Android](#Android)
   * [Android-基础](#Android-基础)
   * [Android-第三方库](#Android-第三方库)
+    * [OkHttp](#OkHttp)
+    * [ButterKnife](#ButterKnife)
 * [Design-Patterns](#Design-Patterns)  
 * [Other](#other)
   * [Ubuntu](#ubuntu)
@@ -21,9 +23,10 @@
 
 ### Android-第三方库
 
-#### OkHttp
+#### [OkHttp](https://github.com/square/okhttp)
 
-OkHttp 库的设计和实现的首要目标是高效
+> An HTTP+HTTP/2 client for Android and Java applications
+
 有如下优点：
 
 * OkHttp 同步和异步调用
@@ -32,6 +35,15 @@ OkHttp 库的设计和实现的首要目标是高效
 * OkHttp 提供了对 GZIP 的默认支持来降低传输内容的大小
 * OkHttp 也提供了对 HTTP 响应的缓存机制，可以避免不必要的网络请求
 * 当网络出现问题时，OkHttp 会自动重试一个主机的多个 IP 地址
+
+#### [ButterKnife](https://github.com/JakeWharton/butterknife)
+
+> Bind Android views and callbacks to fields and methods
+
+* Eliminate `findViewById` calls by using `@BindView` on fields.
+* Group multiple views in a list or array. Operate on all of them at once with actions, setters, or properties.
+* Eliminate anonymous inner-classes for listeners by annotating methods with `@OnClick` and others.
+* Eliminate resource lookups by using resource annotations on fields
 
 ## Design-Patterns
 
