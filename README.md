@@ -48,8 +48,8 @@
 
 > RxJava – Reactive Extensions for the JVM – a library for composing asynchronous and event-based programs using observable sequences for the Java VM
 
-* 异步、简洁（逻辑、代码读写）
-* 含有大量操作符
+* 基于事件流的链式调用、逻辑简洁 & 使用简单
+* 扩展了观察者模式，以支持数据/事件序列，并增加了操作符，他可以将将序列清晰的组合在一起的
 
 ## Design-Patterns
 
