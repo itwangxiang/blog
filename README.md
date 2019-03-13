@@ -7,6 +7,7 @@
   * [Android-第三方库](#Android-第三方库)
     * [OkHttp](#OkHttp)
     * [ButterKnife](#ButterKnife)
+    * [Rxjava](#Rxjava)
 * [Design-Patterns](#Design-Patterns)  
 * [Other](#other)
   * [Ubuntu](#ubuntu)
@@ -27,9 +28,7 @@
 
 > An HTTP+HTTP/2 client for Android and Java applications
 
-有如下优点：
-
-* OkHttp 同步和异步调用
+* OkHttp 支持同步调用和异步调用
 * OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接
 * 如果 HTTP/2 和 SPDY 不可用，OkHttp 会使用连接池来复用连接以提高效率
 * OkHttp 提供了对 GZIP 的默认支持来降低传输内容的大小
@@ -44,6 +43,13 @@
 * 在列表或数组中组合多个视图。一次性使用操作，设置器或属性操作它们
 * 通过使用`@OnClick`和其他方法注释方法来消除侦听器的匿名内部类
 * 通过在字段上使用资源注释来消除资源查找
+
+#### [Rxjava](https://github.com/ReactiveX/RxJava)
+
+> RxJava – Reactive Extensions for the JVM – a library for composing asynchronous and event-based programs using observable sequences for the Java VM
+
+* 异步、简洁（逻辑、代码读写）
+* 含有大量操作符
 
 ## Design-Patterns
 
