@@ -4,6 +4,7 @@
 
 * [Android](#Android)
   * [基础篇](#基础篇)
+  * [原理篇](#原理篇)
   * [核心篇](#核心篇)
   * [开源篇](#开源篇)
 * [Design-Patterns](#Design-Patterns)  
@@ -39,6 +40,20 @@
   * AlertDialog,popupWindow,Activity 的区别
   * Application 和 Activity 的 Context 对象的区别
   * BroadcastReceiver，LocalBroadcastReceiver 的区别
+
+### 原理篇
+
+* View 刷新机制，绘制流程，以及事件传递分发机制
+* Touch 事件传递流程
+* Handler 机制和底层实现
+* AsyncTask 机制，原理以及不足
+* ThreadLocal原理
+* LruCache 是什么，以及默认缓存大小
+* ANR 产生的原因，以及如何定位和修正
+* OOM 是什么？以及如何避免？
+* 内存泄漏和内存溢出区别？
+* 为什么不能在子线程更新UI
+* 线程池有没有上限
 
 ### 核心篇
   
