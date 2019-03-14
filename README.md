@@ -16,6 +16,45 @@
 ## Android
 
 * 基础篇
+
+  * 四大组件
+
+    * Activity
+    * Service
+    * BroadcastReceiver
+    * Content Provider
+
+  * 布局
+
+    * LinearLayout
+    * RelativeLayout
+    * FrameLayout
+    * TableLayout  
+
+  * 其他
+  
+    * AlertDialog,popupWindow,Activity 的区别
+    * Application 和 Activity 的 Context 对象的区别
+    * BroadcastReceiver，LocalBroadcastReceiver 的区别
+
+* 核心篇
+  
+  * Activies
+  * 架构组件-Architecture Components
+  * Intent 和 Intent 过滤器
+  * 界面和导航
+  * 动画和过度
+  * 音频和视频
+  * 后台任务
+  * 应用数据和文件
+  * 用户数据和身份
+  * 用户位置
+  * 触摸和输入
+  * 相机
+  * 传感器
+  * 网络连接
+  * 基于网络的内容（WebView）
+
 * 开源篇
   * [OkHttp](https://github.com/square/okhttp)
 
