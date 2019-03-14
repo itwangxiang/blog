@@ -77,7 +77,7 @@
 
 * [OkHttp](https://github.com/square/okhttp)
 
-  >An HTTP+HTTP/2 client for Android and Java applications
+  > 适用于 Android 和 Java 应用程序的 HTTP + HTTP/2 客户端
 
   * OkHttp 支持同步调用和异步调用
   * OkHttp 提供了对最新的 HTTP 协议版本 HTTP/2 和 SPDY 的支持，这使得对同一个主机发出的所有请求都可以共享相同的套接字连接
@@ -88,7 +88,7 @@
 
 * [Retrofit](https://github.com/square/retrofit)
   
-  > Type-safe HTTP client for Android and Java
+  > 适用于 Android 和 Java 的类型安全的 HTTP 客户端
 
   * 默认基于 OkHttp 封装的一套 RESTful 网络请求框架
   * 通过注解直接配置请求
@@ -104,7 +104,7 @@
 
 * [ButterKnife](https://github.com/JakeWharton/butterknife)
 
-  > Bind Android views and callbacks to fields and methods
+  > 将 Android 视图和回调绑定到字段和方法
 
   * 通过在字段上使用 `@BindView` 消除 `findViewById` 回调
   * 在列表或数组中组合多个视图。一次性使用操作，设置器或属性操作它们
@@ -113,7 +113,7 @@
 
 * [Rxjava](https://github.com/ReactiveX/RxJava)
 
-  > RxJava – Reactive Extensions for the JVM – a library for composing asynchronous and event-based programs using observable sequences for the Java VM
+  > RxJava  -  JVM的Reactive Extensions  - 一个使用 Java VM 的可观察序列组成异步和基于事件的程序的库
 
   * 基于事件流的链式调用、逻辑简洁 & 使用简单
   * 扩展了观察者模式，以支持数据/事件序列，并增加了操作符，他可以将将序列清晰的组合在一起的
