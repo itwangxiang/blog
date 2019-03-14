@@ -3,6 +3,9 @@
 ## Catalog
 
 * [Android](#Android)
+  * [基础篇](#基础篇)
+  * [核心篇](#核心篇)
+  * [开源篇](#开源篇)
 * [Design-Patterns](#Design-Patterns)  
 * [Other](#other)
   * [Ubuntu](#ubuntu)
@@ -32,7 +35,7 @@
     * TableLayout  
 
   * 其他
-  
+
     * AlertDialog,popupWindow,Activity 的区别
     * Application 和 Activity 的 Context 对象的区别
     * BroadcastReceiver，LocalBroadcastReceiver 的区别
