@@ -86,6 +86,22 @@
   * OkHttp 也提供了对 HTTP 响应的缓存机制，可以避免不必要的网络请求
   * 当网络出现问题时，OkHttp 会自动重试一个主机的多个 IP 地址
 
+* [Retrofit](https://github.com/square/retrofit)
+  
+  > Type-safe HTTP client for Android and Java
+
+  * 默认基于 OkHttp 封装的一套 RESTful 网络请求框架
+  * 通过注解直接配置请求
+  * 使用不同 Json Converter 来序列化数据
+  * 提供对 RxJava 的支持
+
+* [Glide](https://github.com/bumptech/glide)  
+
+  > Glide是一个快速高效的Android图片加载库，注重于平滑的滚动
+
+  * Glide 支持拉取，解码和展示视频快照，图片，和GIF动画
+  * Glide 使用简明的流式语法API
+
 * [ButterKnife](https://github.com/JakeWharton/butterknife)
 
   > Bind Android views and callbacks to fields and methods
