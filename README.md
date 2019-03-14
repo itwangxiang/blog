@@ -7,7 +7,7 @@
   * [核心篇](#核心篇)
   * [开源篇](#开源篇)
 * [Design-Patterns](#Design-Patterns)  
-* [Other](#other)
+* [System,Software,Tool](#System,Software,Tool)
   * [Ubuntu](#ubuntu)
   * [Mysql](#mysql)
   * [Nginx](#nginx)
@@ -91,7 +91,7 @@
 
 [todo](https://github.com/itwangxiang/docs/issues/1)
 
-## Other
+## System,Software,Tool
 
 ### Ubuntu
 
