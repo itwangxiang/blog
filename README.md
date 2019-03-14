@@ -118,6 +118,10 @@
   * 基于事件流的链式调用、逻辑简洁 & 使用简单
   * 扩展了观察者模式，以支持数据/事件序列，并增加了操作符，他可以将将序列清晰的组合在一起的
 
+* [Logger](https://github.com/orhanobut/logger)
+
+  > 简单，漂亮，功能强大的 android 记录器
+
 ## Design-Patterns
 
 [todo](https://github.com/itwangxiang/docs/issues/1)
