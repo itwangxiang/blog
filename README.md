@@ -24,6 +24,7 @@
 * 四大组件
 
   * Activity
+    * Activity 之间的通信方式 - Intent,Broadcast,setResult,Application
   * Service
   * BroadcastReceiver
   * Content Provider
