@@ -87,7 +87,7 @@
   * OkHttp 也提供了对 HTTP 响应的缓存机制，可以避免不必要的网络请求
   * 当网络出现问题时，OkHttp 会自动重试一个主机的多个 IP 地址
 
-* [Retrofit](https://github.com/square/retrofit)
+* Retrofit [官网](https://github.com/square/retrofit)
   
   > 适用于 Android 和 Java 的类型安全的 HTTP 客户端
 
@@ -96,14 +96,14 @@
   * 使用不同 Json Converter 来序列化数据
   * 提供对 RxJava 的支持
 
-* [Glide](https://github.com/bumptech/glide)  
+* Glide [官网](https://github.com/bumptech/glide)  
 
   > Glide是一个快速高效的Android图片加载库，注重于平滑的滚动
 
   * Glide 支持拉取，解码和展示视频快照，图片，和GIF动画
   * Glide 使用简明的流式语法API
 
-* [ButterKnife](https://github.com/JakeWharton/butterknife)
+* ButterKnife [官网](https://github.com/JakeWharton/butterknife)
 
   > 将 Android 视图和回调绑定到字段和方法
 
@@ -112,16 +112,20 @@
   * 通过使用`@OnClick`和其他方法注释方法来消除侦听器的匿名内部类
   * 通过在字段上使用资源注释来消除资源查找
 
-* [Rxjava](https://github.com/ReactiveX/RxJava)
+* Rxjava [官网](https://github.com/ReactiveX/RxJava)
 
   > RxJava  -  JVM的Reactive Extensions  - 一个使用 Java VM 的可观察序列组成异步和基于事件的程序的库
 
   * 基于事件流的链式调用、逻辑简洁 & 使用简单
   * 扩展了观察者模式，以支持数据/事件序列，并增加了操作符，他可以将将序列清晰的组合在一起的
 
-* [Logger](https://github.com/orhanobut/logger)
+* Logger [官网](https://github.com/orhanobut/logger)
 
   > 简单，漂亮，功能强大的 android 记录器
+
+* EventBus [官网](https://github.com/greenrobot/EventBus) - [源码](docs/source/EventBus.md)
+
+  > 适用于 Android 和 Java 的事件总线，可简化 Activities, Fragments, Threads, Services 等之间的通信。减少代码，提高质量
 
 ## Design-Patterns
 

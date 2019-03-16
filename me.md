@@ -30,7 +30,7 @@
   - ...
 - 框架：
   - 项目采用 MVP 架构，
-  - 集成主流库：Retrofit、Glide、RxJava
+  - 集成主流库：Retrofit、Glide、RxJava、EventBus
 
 > 注：项目上线，尚未出现重大 BUG，代码质量优良
 
