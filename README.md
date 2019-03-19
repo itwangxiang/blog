@@ -43,6 +43,17 @@
   * FrameLayout
   * TableLayout  
 
+* Handler
+  * 流程
+    * 等待消息：Looper.loop();
+    * 消息入队：
+      1. Handler.sendMessage(msg)
+      2. Looper.MessageQueue.enqueueMessage(msg)
+    * 处理消息：Looper.loop();
+    * 消息出队：
+      1. Handler.dispatchMessage(msg)
+      2. Handler.handleMessage(msg)
+
 * 其他
 
   * AlertDialog,popupWindow,Activity 的区别
