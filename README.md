@@ -24,7 +24,14 @@
 * 四大组件
 
   * Activity
-    * Activity 之间的通信方式 - Intent,Broadcast,setResult,Application
+    * [生命周期](https://developer.android.com/guide/components/activities/activity-lifecycle#java)
+      > onCreate -> onStart -> onResume -> onPause -> onStop -> onDestory
+    * [启动模式](https://developer.android.com/guide/components/activities/tasks-and-back-stack)
+      * standard
+      * singleTop
+      * singleTask
+      * singleInstance
+    * Activity 之间的通信方式 - Intent(Bundle),Broadcast,setResult,Application,EventBus
   * Service
   * BroadcastReceiver
   * Content Provider
