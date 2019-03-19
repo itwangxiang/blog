@@ -29,14 +29,14 @@
   - 通用模块：广告栏，分享，消息推送，弹窗消息，版本更新，Bug 收集，分渠道部署上线
   - Hybrid：集成 X5 内核，与 H5 两者作交互，并作常见的性能优化
 - 框架：
-  - 项目采用 MVP 架构，
+  - 项目采用 MVP 架构
   - 集成主流库有：
     - Retrofit、RxJava
     - Glide、EventBus、ButterKnife
     - Greendao
     - Bugly、JPush、JAnalytics
 
-> 注：项目上线，尚未出现重大 BUG，代码质量优良
+> 注：项目上线，运行良好，团队认可度高
 
 其他还负责一些周边项目，包括后端开发 、H5 开发 等
 
