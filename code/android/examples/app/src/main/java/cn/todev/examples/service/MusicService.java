@@ -6,11 +6,8 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.os.Binder;
 import android.os.IBinder;
-
-import com.blankj.utilcode.util.NotificationUtils;
-import com.blankj.utilcode.util.Utils;
-import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -24,10 +21,15 @@ import static androidx.core.app.NotificationCompat.PRIORITY_MAX;
 public class MusicService extends Service {
 
     private NotificationManager manager;
-
     private MediaPlayer mediaPlayer;
 
-    public MusicService() {
+    private final IBinder mBinder = new MusicBinder();
+
+    public class MusicBinder extends Binder {
+        public MusicService getService() {
+            // Return this instance of LocalService so clients can call public methods
+            return MusicService.this;
+        }
     }
 
     @Override
@@ -36,9 +38,7 @@ public class MusicService extends Service {
         EventBus.getDefault().post(new LifeCycleEvent(getClass(), "onCreate"));
 
         manager = (NotificationManager) ExampleApp.getInstance().getSystemService(Context.NOTIFICATION_SERVICE);
-
-        String mp3Url = "https://our-cloud.oss-cn-shanghai.aliyuncs.com/hello.mp3";
-        play(mp3Url);
+        mediaPlayer = new MediaPlayer();
 
         showMusicNotification();
     }
@@ -53,8 +53,7 @@ public class MusicService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         EventBus.getDefault().post(new LifeCycleEvent(getClass(), "onBind"));
-
-        throw new UnsupportedOperationException("Not yet implemented");
+        return mBinder;
     }
 
     @Override
@@ -91,8 +90,7 @@ public class MusicService extends Service {
         manager.notify(0, n);
     }
 
-    private void play(String url) {
-        mediaPlayer = new MediaPlayer();
+    public void play(String url) {
 
         try {
             mediaPlayer.setDataSource(url);

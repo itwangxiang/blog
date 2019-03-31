@@ -1,25 +1,18 @@
 package cn.todev.examples.ui;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
-import android.os.Environment;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.TextView;
 
-import com.blankj.utilcode.util.FileIOUtils;
-import com.blankj.utilcode.util.FileUtils;
 import com.blankj.utilcode.util.ServiceUtils;
-import com.orhanobut.logger.Logger;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.BindView;
@@ -33,6 +26,11 @@ public class ServiceFirstActivity extends AppCompatActivity {
 
     @BindView(R.id.tv_msg)
     TextView tvMsg;
+
+    private MusicService mMusicService;
+    private boolean mBound;
+
+    private String mp3Url = "https://our-cloud.oss-cn-shanghai.aliyuncs.com/hello.mp3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,11 +70,34 @@ public class ServiceFirstActivity extends AppCompatActivity {
                 ServiceUtils.stopService(MusicService.class);
                 break;
             case R.id.btn_bind_service:
+                bindService(new Intent(this, MusicService.class), mMusicServiceConnection, BIND_AUTO_CREATE);
                 break;
             case R.id.btn_unbind_service:
+                if (mBound) {
+                    unbindService(mMusicServiceConnection);
+                    mBound = false;
+                }
                 break;
         }
     }
+
+    private ServiceConnection mMusicServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            MusicService.MusicBinder binder = (MusicService.MusicBinder) service;
+            mMusicService = binder.getService();
+            mMusicService.play(mp3Url);
+
+            mBound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 
 
 }
