@@ -1,6 +1,7 @@
 package cn.todev.examples.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import cn.todev.examples.R;
 
 import android.os.Bundle;
 

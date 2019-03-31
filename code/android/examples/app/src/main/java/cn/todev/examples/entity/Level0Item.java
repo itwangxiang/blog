@@ -5,12 +5,10 @@ import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import cn.todev.examples.adapter.ExpandableItemAdapter;
 
-public class MainLv0Item extends AbstractExpandableItem<MainLv1Item> implements MultiItemEntity {
+public class Level0Item extends AbstractExpandableItem<Level1Item> implements MultiItemEntity {
     public String title;
-    public String subTitle;
 
-    public MainLv0Item( String title, String subTitle) {
-        this.subTitle = subTitle;
+    public Level0Item(String title) {
         this.title = title;
     }
 

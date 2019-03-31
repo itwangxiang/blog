@@ -1,16 +1,18 @@
 package cn.todev.examples.entity;
 
+import android.app.Activity;
+
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
 import cn.todev.examples.adapter.ExpandableItemAdapter;
 
-public class MainLv1Item implements MultiItemEntity {
+public class Level1Item implements MultiItemEntity {
 
     public String title;
-    public String subTitle;
+    public Class<? extends Activity> actClass;
 
-    public MainLv1Item(String title, String subTitle) {
-        this.subTitle = subTitle;
+    public Level1Item(String title, Class<? extends Activity> actClass) {
+        this.actClass = actClass;
         this.title = title;
     }
 

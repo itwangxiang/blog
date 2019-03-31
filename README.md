@@ -31,8 +31,11 @@
       * singleTop
       * singleTask
       * singleInstance
-    * Activity 之间的通信方式 - Intent(Bundle),Broadcast,setResult,Application,EventBus
   * Service
+    * startService
+      > `onCreate()` 、`onStartCommand()`、`onStart()`、`onDestroy()`
+    * bindService
+      > `bindService()`、`onCreate()` 、`IBinder onBind(Intent intent)`、`unBindService()`、`onDestroy()`
   * BroadcastReceiver
   * Content Provider
 
@@ -81,8 +84,14 @@
 * 网络优化
 * 启动优化
 * 电量优化
-* 引用资料
-  * [Android性能优化全方面解析](https://juejin.im/post/5a0d30e151882546d71ee49e#heading-17)
+
+> 参考资料
+
+* [Android性能优化全方面解析](https://juejin.im/post/5a0d30e151882546d71ee49e#heading-17)
+
+### 视频篇
+
+### 网络篇
 
 ### 开源篇
 
@@ -135,7 +144,7 @@
 
 * EventBus [官网](https://github.com/greenrobot/EventBus) - [源码](docs/source/EventBus.md)
 
-  > 适用于 Android 和 Java 的事件总线，可简化 Activities, Fragments, Threads, Services 等之间的通信。减少代码，提高质量
+  > 适用于 Android 和 Java 的事件总线，可简化 Activities, Fragments, Threads, Services 等之间的通信。减少代码，提高质量  
 
 ## Design-Patterns
 
