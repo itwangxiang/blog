@@ -65,8 +65,10 @@
 
 ### 原理篇
 
+* Touch 事件传递机制
+  * ViewGroup : `dispatchTouchEvent()` -> `onInterceptTouchEvent() == true` -> `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
+  * View : `dispatchTouchEvent()` ->  `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
 * View 刷新机制，绘制流程，以及事件传递分发机制
-* Touch 事件传递流程
 * Handler 机制和底层实现
 * AsyncTask 机制，原理以及不足
 * ThreadLocal原理

@@ -15,6 +15,7 @@ import cn.todev.examples.adapter.ExpandableItemAdapter;
 import cn.todev.examples.entity.Level0Item;
 import cn.todev.examples.entity.Level1Item;
 import cn.todev.examples.ui.ActFirstActivity;
+import cn.todev.examples.ui.EventFirstActivity;
 import cn.todev.examples.ui.ServiceFirstActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
         level0Item.addSubItem(new Level1Item("Content Provider", null));
         res.add(level0Item);
 
-        level0Item = new Level0Item("视频篇");
+        level0Item = new Level0Item("原理篇");
+        level0Item.addSubItem(new Level1Item("事件分发机制", EventFirstActivity.class));
+
         res.add(level0Item);
 
         return res;
