@@ -73,8 +73,9 @@
 * 屏幕刷新机制
 
   * Android 应用程序调用 SurfaceFlinger 服务把经过测量、布局和绘制后的 Surface 渲染到显示屏幕上
-  * 参考资料
-    > [Android 显示原理简介](http://djt.qq.com/article/view/987)
+  
+  > 参考资料
+  >> [Android 显示原理简介](http://djt.qq.com/article/view/987)
 
 * AsyncTask 机制，原理以及不足
 * ThreadLocal原理
