@@ -66,12 +66,16 @@
 ### 原理篇
 
 * Touch 事件传递机制
+
   * ViewGroup : `dispatchTouchEvent()` -> `onInterceptTouchEvent() == true` -> `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
   * View : `dispatchTouchEvent()` ->  `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
+
 * 屏幕刷新机制
   * Android 应用程序调用 SurfaceFlinger 服务把经过测量、布局和绘制后的 Surface 渲染到显示屏幕上
+
   > 参考资料
   >> [Android 显示原理简介](http://djt.qq.com/article/view/987)
+
 * AsyncTask 机制，原理以及不足
 * ThreadLocal原理
 * LruCache 是什么，以及默认缓存大小
