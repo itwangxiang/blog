@@ -2,11 +2,18 @@
 
 ## Catalog
 
+- [Java](#Java)
+  - [数据结构](#数据结构)
 - [Android](#Android)
   - [基础篇](#基础篇)
   - [原理篇](#原理篇)
   - [核心篇](#核心篇)
   - [开源篇](#开源篇)
+- [算法](#算法)
+  - [排序算法](#排序算法)
+    - [冒泡排序](#冒泡排序)
+    - [选择排序](#选择排序)
+    - [快速排序](#快速排序)
 - [Design-Patterns](#Design-Patterns)
 - [System,Software,Tool](#System,Software,Tool)
   - [Ubuntu](#ubuntu)
@@ -16,6 +23,16 @@
   - [Vim](#vim)
   - [Shadowsocks](https://github.com/itwangxiang/docs/wiki/VPS.Shadowsocks)
 - [Asset](#asset)
+
+---
+
+## Java
+
+### 数据结构
+
+- List
+- Set
+- Map
 
 ## Android
 
