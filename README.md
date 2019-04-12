@@ -14,7 +14,7 @@
     - [冒泡排序](#冒泡排序)
     - [选择排序](#选择排序)
     - [快速排序](#快速排序)
-- [Design-Patterns](#Design-Patterns)
+- [设计模式](#设计模式)
 - [System,Software,Tool](#System,Software,Tool)
   - [Ubuntu](#ubuntu)
   - [Mysql](#mysql)
@@ -247,7 +247,7 @@ public static void quickSort(int[] arr, int head, int tail) {
 }
 ```
 
-## Design-Patterns
+## 设计模式
 
 [todo](https://github.com/itwangxiang/docs/issues/1)
 
