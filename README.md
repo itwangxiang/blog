@@ -3,7 +3,7 @@
 ## Catalog
 
 - [Java](#Java)
-  - [数据结构](#数据结构)
+  - [集合](#集合)
 - [Android](#Android)
   - [基础篇](#基础篇)
   - [原理篇](#原理篇)
@@ -28,11 +28,20 @@
 
 ## Java
 
-### 数据结构
+### 集合
 
-- List
-- Set
-- Map
+- Coliection
+  - List: 有序集合
+    - ArrayList
+    - LinkedList
+  - Set: 不能包含重复元素的集合
+    - HashSet
+    - TreeSet
+    - LinkedHashSet
+- Map: 将键映射到值的对象
+  - HashMap
+  - TreeMap
+  - LinkedHashMap
 
 ## Android
 
