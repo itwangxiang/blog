@@ -5,11 +5,9 @@ import cn.todev.examples.R;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.HandlerThread;
-import android.os.Looper;
 import android.os.Message;
 
-import com.orhanobut.logger.Logger;
+import com.blankj.utilcode.util.ToastUtils;
 
 public class HandlerActivity extends AppCompatActivity {
 
@@ -30,7 +28,7 @@ public class HandlerActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            Logger.i((String) msg.obj);
+            ToastUtils.showShort(msg.obj.toString());
         }
     }
 }
