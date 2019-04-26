@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         level0Item.addSubItem(new Level1Item("Handler 机制", HandlerActivity.class));
         level0Item.addSubItem(new Level1Item("AsyncTask", AsyncTaskActivity.class));
         level0Item.addSubItem(new Level1Item("LruCache", LruCacheActivity.class));
+        level0Item.addSubItem(new Level1Item("ThreadPool", ThreadPoolActivity.class));
 
         res.add(level0Item);
 
