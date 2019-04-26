@@ -68,7 +68,7 @@ public class AsyncTaskActivity extends AppCompatActivity {
 
 
         mDownAsyncTask = new DownloadAsyncTask(progressTask);
-        mDownAsyncTask.execute(u1, u2, u3);
+        mDownAsyncTask.execute(url);
     }
 
     private void cancel() {
