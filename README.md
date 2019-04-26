@@ -104,10 +104,45 @@
       1. Handler.dispatchMessage(msg)
       2. Handler.handleMessage(msg)
 
-- AsyncTask 机制，原理以及不足
-- ThreadLocal 原理
-- LruCache
+- `AsyncTask` 机制，原理以及不足
+
+  > `AsyncTask` 可以正确，方便地使用 UI 线程。此类允许您执行后台操作并在 UI 线程上发布结果，而无需操作线程和/或处理程序
+
+  - demo
+
+  ```java
+  // 声明
+  private class DownloadFilesTask extends AsyncTask<URL, Integer, Long> {
+     protected Long doInBackground(URL... urls) {
+         int count = urls.length;
+         long totalSize = 0;
+         for (int i = 0; i < count; i++) {
+             totalSize += Downloader.downloadFile(urls[i]);
+             publishProgress((int) ((i / (float) count) * 100));
+             // Escape early if cancel() is called
+             if (isCancelled()) break;
+         }
+         return totalSize;
+     }
+
+     protected void onProgressUpdate(Integer... progress) {
+         setProgressPercent(progress[0]);
+     }
+
+     protected void onPostExecute(Long result) {
+         showDialog("Downloaded " + result + " bytes");
+     }
+  }
+  
+  // 使用
+  new DownloadFilesTask().execute(url1, url2, url3);
+  ```
+
+- `ThreadLocal` 原理
+- `LruCache` 缓存策略
+
   > 包含对有限数量值的强引用的缓存。每次访问一个值时，它都会移动到队列的头部。将值添加到完整缓存时，该队列末尾的值将被逐出，并且可能符合垃圾回收的条件
+
   - 原理：
     - `LruCache` 中维护了一个 `LinkedHashMap` 集合并将其设置顺序排序。
     - 当调用 `put()` 方法时，就会在集合中添加元素，并调用 `trimToSize()` 判断缓存是否已满，如果满了就用 `LinkedHashMap` 的迭代器删除队尾元素，即近期最少访问的元素。
