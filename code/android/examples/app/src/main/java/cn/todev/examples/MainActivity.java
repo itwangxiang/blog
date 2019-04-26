@@ -18,6 +18,7 @@ import cn.todev.examples.entity.Level1Item;
 import cn.todev.examples.ui.ActFirstActivity;
 import cn.todev.examples.ui.EventFirstActivity;
 import cn.todev.examples.ui.HandlerActivity;
+import cn.todev.examples.ui.LruCacheActivity;
 import cn.todev.examples.ui.ServiceFirstActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
         level0Item = new Level0Item("原理篇");
         level0Item.addSubItem(new Level1Item("事件分发机制", EventFirstActivity.class));
         level0Item.addSubItem(new Level1Item("Handler 机制", HandlerActivity.class));
+        level0Item.addSubItem(new Level1Item("LruCache 机制", LruCacheActivity.class));
 
         res.add(level0Item);
 
