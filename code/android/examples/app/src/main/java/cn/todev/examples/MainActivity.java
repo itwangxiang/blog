@@ -1,7 +1,6 @@
 package cn.todev.examples;
 
 import android.os.Bundle;
-import android.os.Looper;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
@@ -21,6 +20,7 @@ import cn.todev.examples.ui.EventFirstActivity;
 import cn.todev.examples.ui.HandlerActivity;
 import cn.todev.examples.ui.LruCacheActivity;
 import cn.todev.examples.ui.ServiceFirstActivity;
+import cn.todev.examples.ui.ThreadPoolActivity;
 
 public class MainActivity extends AppCompatActivity {
 

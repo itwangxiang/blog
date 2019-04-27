@@ -1,11 +1,10 @@
-package cn.todev.examples;
+package cn.todev.examples.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import cn.todev.examples.R;
 
 import android.os.Bundle;
-import android.util.Log;
 
-import com.blankj.utilcode.util.ToastUtils;
 import com.orhanobut.logger.Logger;
 
 import java.util.concurrent.ExecutorService;
