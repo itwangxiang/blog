@@ -133,7 +133,7 @@
   - `参考资料`
     - [Android 显示原理简介](http://djt.qq.com/article/view/987)
 
-- Handler
+- `Handler`
 
   - 流程
     - 等待消息：Looper.loop();
@@ -149,6 +149,14 @@
 
   > `AsyncTask` 可以正确，方便地使用 UI 线程。此类允许您执行后台操作并在 UI 线程上发布结果，而无需操作线程和/或处理程序
 
+- `ActivityThread`
+
+  它管理应用程序进程中主线程的执行，按照活动管理器的请求调度和执行活动、广播和其他操作
+  1. LauncherActivity 通过 Binder 进程间通信的方式将应用的信息通过 Intent 的方式传递给 AMS ，由 AMS 进行调度。
+  2. 如果系统中不存在该进程时，AMS将会请求Zygote服务去fork一个子进程，成功后返回一个pid给AMS，并由AndroidRuntime 机制调起 ActivityThread 中的 main() 方法。
+  3. 紧接着，应用程序的 Main Looper 被创建，ActivityThread 被实例化成为对象并将 Application 的信息以进程间通信的方式再次回馈给AMS。
+  4. AMS接收到客户端发来的请求数据之后，首先将应用程序绑定，并启动应用程序的Activity，开始执行Activity的生命周期
+  
 - `ThreadLocal`
 - `LruCache` 缓存策略
 
@@ -163,7 +171,7 @@
 - OOM 是什么？以及如何避免？
 - 内存泄漏和内存溢出区别？
 - 为什么不能在子线程更新 UI
-- 线程池有没有上限
+- 线程池
   - `参考资料`
     - [Android 线程池原理及使用](https://www.jianshu.com/p/7b2da1d94b42)
 
