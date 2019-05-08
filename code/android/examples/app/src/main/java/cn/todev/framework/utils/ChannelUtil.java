@@ -1,4 +1,4 @@
-package cn.todev.common.utils;
+package cn.todev.framework.utils;
 
 import java.io.IOException;
 import java.util.Enumeration;

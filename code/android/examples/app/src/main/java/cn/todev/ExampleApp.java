@@ -10,18 +10,19 @@ import com.orhanobut.logger.PrettyFormatStrategy;
 
 public class ExampleApp extends Application {
 
-    private static ExampleApp sInstance = null;
+    private static ExampleApp instance;
+
+    public static ExampleApp getInstance() {
+        return instance;
+    }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sInstance = this;
+
+        instance = this;
 
         init();
-    }
-
-    public static ExampleApp getInstance() {
-        return sInstance;
     }
 
     private void init() {
