@@ -53,36 +53,36 @@
 
   线程是进程的子集，一个进程可以有很多线程，每条线程并行执行不同的任务。不同的进程使用不同的内存空间，而所有的线程共享一片相同的内存空间。别把它和栈内存搞混，每个线程都拥有单独的栈内存用来存储本地数据。
 
-- 如何在Java中实现线程？
+- 如何在 Java 中实现线程？
 
-  在语言层面有两种方式。java.lang.Thread 类的实例就是一个线程但是它需要调用 java.lang.Runnable 接口来执行，由于线程类本身就是调用的 Runnable 接口所以你可以继承java.lang.Thread 类或者直接调用Runnable接口来重写run()方法实现线程
+  在语言层面有两种方式。java.lang.Thread 类的实例就是一个线程但是它需要调用 java.lang.Runnable 接口来执行，由于线程类本身就是调用的 Runnable 接口所以你可以继承 java.lang.Thread 类或者直接调用 Runnable 接口来重写 run()方法实现线程
 
 - Thread 类中的 `start()` 和 `run()` 方法有什么区别？
 
-  `start()` 方法被用来启动新创建的线程，而且 `start()` 内部调用了 `run()` 方法，这和直接调用 `run()` 方法的效果不一样。当你调用 `run()` 方法的时候，只会是在原来的线程中调用，没有新的线程启动，`start()` 方法才会启动新线程  
+  `start()` 方法被用来启动新创建的线程，而且 `start()` 内部调用了 `run()` 方法，这和直接调用 `run()` 方法的效果不一样。当你调用 `run()` 方法的时候，只会是在原来的线程中调用，没有新的线程启动，`start()` 方法才会启动新线程
 
 - Java 中 `Runnable` 和 `Callable` 有什么不同？
-  
+
   Runnable 和 Callable 都代表那些要在不同的线程中执行的任务。
 
-  Runnable从JDK1.0开始就有了，Callable是在JDK1.5增加的。
+  Runnable 从 JDK1.0 开始就有了，Callable 是在 JDK1.5 增加的。
 
   它们的主要区别是 Callable 的 `call()` 方法可以返回值和抛出异常，而 Runnable 的 `run()` 方法没有这些功能。Callable 可以返回装载有计算结果的 Future 对象
 
 - 什么是 ThreadLocal 变量？
 
-  ThreadLocal 是 Java 里一种特殊的变量。每个线程都有一个 ThreadLocal 就是每个线程都拥有了自己独立的一个变量，竞争条件被彻底消除了  
+  ThreadLocal 是 Java 里一种特殊的变量。每个线程都有一个 ThreadLocal 就是每个线程都拥有了自己独立的一个变量，竞争条件被彻底消除了
 
 - 什么是线程池？ 为什么要使用它？
 
   创建线程要花费昂贵的资源和时间，如果任务来了才创建线程那么响应时间会变长，而且一个进程能创建的线程数有限。
-  
+
   为了避免这些问题，在程序启动的时候就创建若干线程来响应处理，它们被称为线程池，里面的线程叫工作线程。
-  
-  从JDK1.5开始，Java API提供了Executor框架让你可以创建不同的线程池
+
+  从 JDK1.5 开始，Java API 提供了 Executor 框架让你可以创建不同的线程池
 
 - `参考资料`
-  - [50道Java线程面试题](http://www.importnew.com/12773.html)
+  - [50 道 Java 线程面试题](http://www.importnew.com/12773.html)
 
 ## Android
 
@@ -114,7 +114,6 @@
   - TableLayout
 
 - 其他
-
   - AlertDialog,popupWindow,Activity 的区别
   - Application 和 Activity 的 Context 对象的区别
   - BroadcastReceiver，LocalBroadcastReceiver 的区别
@@ -152,11 +151,12 @@
 - `ActivityThread`
 
   它管理应用程序进程中主线程的执行，按照活动管理器的请求调度和执行活动、广播和其他操作
+
   1. LauncherActivity 通过 Binder 进程间通信的方式将应用的信息通过 Intent 的方式传递给 AMS ，由 AMS 进行调度。
-  2. 如果系统中不存在该进程时，AMS将会请求Zygote服务去fork一个子进程，成功后返回一个pid给AMS，并由AndroidRuntime 机制调起 ActivityThread 中的 main() 方法。
-  3. 紧接着，应用程序的 Main Looper 被创建，ActivityThread 被实例化成为对象并将 Application 的信息以进程间通信的方式再次回馈给AMS。
-  4. AMS接收到客户端发来的请求数据之后，首先将应用程序绑定，并启动应用程序的Activity，开始执行Activity的生命周期
-  
+  2. 如果系统中不存在该进程时，AMS 将会请求 Zygote 服务去 fork 一个子进程，成功后返回一个 pid 给 AMS，并由 AndroidRuntime 机制调起 ActivityThread 中的 main() 方法。
+  3. 紧接着，应用程序的 Main Looper 被创建，ActivityThread 被实例化成为对象并将 Application 的信息以进程间通信的方式再次回馈给 AMS。
+  4. AMS 接收到客户端发来的请求数据之后，首先将应用程序绑定，并启动应用程序的 Activity，开始执行 Activity 的生命周期
+
 - `ThreadLocal`
 - `LruCache` 缓存策略
 
@@ -243,6 +243,10 @@
 - EventBus [官网](https://github.com/greenrobot/EventBus) - [源码](docs/source/EventBus.md)
 
   > 适用于 Android 和 Java 的事件总线，可简化 Activities, Fragments, Threads, Services 等之间的通信。减少代码，提高质量
+
+### 工具篇
+
+- 批量渠道打包 - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
 
 ## 算法
 
