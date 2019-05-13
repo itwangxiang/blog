@@ -58,6 +58,7 @@ default_category: uncategorized
 category_map:
   编程: programming
   安卓: android
+  Java: java
   生活: life
 tag_map:
 

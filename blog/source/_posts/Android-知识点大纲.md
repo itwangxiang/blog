@@ -8,5 +8,4 @@ categories:
 tags:
 ---
 
-
-![](https://raw.githubusercontent.com/itwangxiang/docs/master/mind/Android.png)
+![Android-知识点大纲](https://raw.githubusercontent.com/itwangxiang/docs/master/mind/Android.png)
