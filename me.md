@@ -7,9 +7,9 @@
 
 ## 技能点
 
-- 熟悉Java 基础 、并发 、JVM 和 常用的设计模式
-- 熟悉 HTTPS/TCP
-- 熟悉Touch 事件、绘制流程、Handler 机制
+- 熟悉 Java 基础 、并发 、JVM 和 常用的设计模式
+- 熟悉 HTTPS/TCP 协议，以及 Socket 通信
+- 熟悉 Touch 事件、绘制流程、Handler 机制，进程间通信
 - 熟悉常见的性能优化
 
 ## 工作经历
