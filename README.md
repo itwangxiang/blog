@@ -86,6 +86,10 @@
 
 ## Android
 
+### 系统架构图
+
+![android_system_structure](asset/img/android_system_structure.png)
+
 ### 基础篇
 
 - 四大组件
