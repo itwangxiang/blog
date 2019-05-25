@@ -23,12 +23,14 @@ public class ExampleApp extends Application {
         instance = this;
 
         init();
+
+        Logger.i("pid" + android.os.Process.myPid());
     }
 
     private void init() {
         FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder()
-                .showThreadInfo(false)
-                .methodCount(0)
+                .showThreadInfo(true)
+                .methodCount(2)
                 .methodOffset(7)
                 .tag("Examples")
                 .build();

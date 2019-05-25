@@ -19,6 +19,7 @@ import cn.todev.examples.ui.AsyncTaskActivity;
 import cn.todev.examples.ui.EventFirstActivity;
 import cn.todev.examples.ui.HandlerActivity;
 import cn.todev.examples.ui.LruCacheActivity;
+import cn.todev.examples.ui.OSSActivity;
 import cn.todev.examples.ui.ServiceFirstActivity;
 import cn.todev.examples.ui.ThreadPoolActivity;
 
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         level0Item.addSubItem(new Level1Item("AsyncTask", AsyncTaskActivity.class));
         level0Item.addSubItem(new Level1Item("LruCache", LruCacheActivity.class));
         level0Item.addSubItem(new Level1Item("ThreadPool", ThreadPoolActivity.class));
+        level0Item.addSubItem(new Level1Item("Binder (AIDL) 之 OSS 例子", OSSActivity.class));
 
         res.add(level0Item);
 

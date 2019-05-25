@@ -16,6 +16,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".ui.OSSActivity" />
+
+        <service
+            android:name=".service.OSSService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
+
         <activity android:name=".ui.ThreadPoolActivity" />
         <activity android:name=".ui.AsyncTaskActivity" />
         <activity android:name=".ui.LruCacheActivity" />
