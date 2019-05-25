@@ -18,14 +18,14 @@
 
 > [善恩英语 APP](https://a.app.qq.com/o/simple.jsp?pkgname=com.bstcine.course)
 
-- 技术栈: `Retrofit`、`RxJava`、`Greendao`、`Glide`、`EventBus`、`ButterKnife`、`JPush`
-- 独立负责 APP 的架构与开发
+- 技术栈: `Retrofit`、`RxJava`、`Greendao`、`Glide`、`EventBus`、`ButterKnife`
+- 独立负责 APP 的架构与开发，保证线上 APP 稳定性
 - 基于 `MediaPlayer` 封装 `APlayer` 播放器，实现视频、伪视频、音频的播放
 - 基于 `MediaBrowserService` 实现后台音频播放
-- 使用 `FileDownloader` 下载文件，并将文件与课件资源关系表缓存到本地数据库
-- 使用阿里 `OSS` 处理文件资源，以及图片处理
+- 关于文件资源的下载，并将文件与课件资源关系表缓存到本地数据库
+- 关于已经失效的缓存资源，做后台静默更新并删除
 - 集成 `腾讯X5内核` ，与 H5 交互，并作性能优化
-- 以及支付、推送、分享、版本更新、BUG 记录、多渠道打包
+- 以及支付、推送、分享、版本更新、APK廋身、BUG 记录、多渠道打包
 
 > 其他项目
 

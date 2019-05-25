@@ -16,9 +16,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity
-            android:name=".ui.ProcessActivity"
-            android:process=":remote" />
         <activity android:name=".ui.ThreadPoolActivity" />
         <activity android:name=".ui.AsyncTaskActivity" />
         <activity android:name=".ui.LruCacheActivity" />
