@@ -10,7 +10,8 @@
 - 熟悉 Java 、并发 、JVM
 - 熟悉 常用的设计模式、数据结构、算法
 - 熟悉 HTTPS/TCP 协议，以及 Socket 通信
-- 熟悉 Touch 事件、绘制流程、Handler 机制以及常见的性能优化
+- 熟悉 Touch 事件、绘制流程、Handler 机制
+- 熟悉 IPC Binder AIDL 以及 常见的性能优化
 
 ## 工作经历
 
