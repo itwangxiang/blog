@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">examples</string>
+    <string name="scroll_to">ScrollTo</string>
+    <string name="scroll_by">ScrollBy</string>
 </resources>

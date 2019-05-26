@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        <activity android:name=".ui.BasicViewActivity"></activity>
         <activity android:name=".ui.OSSActivity" />
 
         <service
