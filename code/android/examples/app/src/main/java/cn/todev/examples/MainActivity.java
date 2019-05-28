@@ -18,6 +18,7 @@ import cn.todev.examples.entity.Level1Item;
 import cn.todev.examples.ui.ActFirstActivity;
 import cn.todev.examples.ui.AsyncTaskActivity;
 import cn.todev.examples.ui.BasicViewActivity;
+import cn.todev.examples.ui.CustomViewActivity;
 import cn.todev.examples.ui.EventFirstActivity;
 import cn.todev.examples.ui.HandlerActivity;
 import cn.todev.examples.ui.LruCacheActivity;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
         level0Item = new Level0Item("View 篇");
         level0Item.addSubItem(new Level1Item("View 基础知识", BasicViewActivity.class));
+        level0Item.addSubItem(new Level1Item("View 自定义", CustomViewActivity.class));
         res.add(level0Item);
 
         level0Item = new Level0Item("原理篇");
