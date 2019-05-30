@@ -17,7 +17,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".ui.CustomViewActivity"></activity>
+        <activity android:name=".ui.ViewActivity"></activity>
+        <activity android:name=".ui.CustomViewActivity" />
         <activity android:name=".ui.BasicViewActivity" />
         <activity android:name=".ui.OSSActivity" />
 

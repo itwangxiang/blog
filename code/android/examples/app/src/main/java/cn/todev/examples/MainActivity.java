@@ -25,6 +25,7 @@ import cn.todev.examples.ui.LruCacheActivity;
 import cn.todev.examples.ui.OSSActivity;
 import cn.todev.examples.ui.ServiceFirstActivity;
 import cn.todev.examples.ui.ThreadPoolActivity;
+import cn.todev.examples.ui.ViewActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         level0Item = new Level0Item("View 篇");
         level0Item.addSubItem(new Level1Item("View 基础知识", BasicViewActivity.class));
+        level0Item.addSubItem(new Level1Item("View 常见的(RecyclerView)", ViewActivity.class));
         level0Item.addSubItem(new Level1Item("View 自定义", CustomViewActivity.class));
         res.add(level0Item);
 
