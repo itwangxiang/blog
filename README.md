@@ -336,6 +336,10 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 - [Overview](docs/vps/ubuntu.md)
 
+### Centos
+
+- [Overview](docs/vps/centos.md)
+
 ### Mysql
 
 - [Overview](docs/vps/mysql.md)
