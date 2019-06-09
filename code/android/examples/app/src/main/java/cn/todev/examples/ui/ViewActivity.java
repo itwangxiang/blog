@@ -2,6 +2,7 @@ package cn.todev.examples.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -19,6 +20,8 @@ public class ViewActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_list)
     RecyclerView recyclerView;
+    @BindView(R.id.sv_hello)
+    SurfaceView svHello;
 
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -28,6 +31,11 @@ public class ViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view);
         ButterKnife.bind(this);
+
+
+
+
+
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);

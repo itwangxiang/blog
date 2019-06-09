@@ -6,6 +6,11 @@
     android:orientation="vertical"
     tools:context=".ui.ViewActivity">
 
+    <cn.todev.examples.widget.XSurfaceView
+        android:id="@+id/sv_hello"
+        android:layout_width="match_parent"
+        android:layout_height="60dp" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list"
         android:layout_width="match_parent"
