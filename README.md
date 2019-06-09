@@ -1,4 +1,4 @@
-# Docs
+# Blog
 
 ## Catalog
 
