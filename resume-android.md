@@ -64,6 +64,6 @@
 
 ## 链接
 
-- [Github](https://github.com/itwangxiang)
+- blog: [https://github.com/itwangxiang/blog](https://github.com/itwangxiang/blog)
 
 ---
