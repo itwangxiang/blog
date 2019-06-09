@@ -42,6 +42,12 @@ sudo apt-get check # 检查是否有损坏的依赖
 
 ### 常见问题
 
+#### 修改密码
+
+```bash
+sudo passwd root
+```
+
 #### 中文乱码
 
 ```bash
