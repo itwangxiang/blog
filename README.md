@@ -17,6 +17,7 @@
 - [设计模式](#设计模式)
 - [System,Software,Tool](#System,Software,Tool)
   - [Ubuntu](#ubuntu)
+  - [Centos](#centos)
   - [Mysql](#mysql)
   - [Nginx](#nginx)
   - [Git](#git)
