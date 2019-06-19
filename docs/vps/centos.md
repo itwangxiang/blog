@@ -78,6 +78,12 @@ WantedBy=multi-user.target
 chmod +x /etc/systemd/system/shadowsocks.service
 ```
 
+设置开机启动
+
+```bash
+systemctl enable shadowsocks.service
+```
+
 测试服务
 
 ```bash
