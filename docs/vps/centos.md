@@ -89,7 +89,6 @@ systemctl enable shadowsocks.service
 ```bash
 systemctl start shadowsocks # 启动
 systemctl status shadowsocks # 查看状态
-systemctl stop shadowsocks # 停止
 ```
 
 ## 其他常用
