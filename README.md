@@ -167,7 +167,7 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 ### 系统架构图
 
-![android_system_structure](asset/img/android_system_structure.png){:height="900px" width="600px"}
+<img src="https://github.com/itwangxiang/blog/blob/master/asset/img/android_system_structure.png" height="900" width="600">
 
 ### 基础篇
 
