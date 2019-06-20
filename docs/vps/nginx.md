@@ -1,39 +1,36 @@
 
-# 基础
+# Nginx
 
-## 安装
+## 安装/卸载
+
+### ubuntu
+
+安装
 
 ```bash
 #!apt-get install nginx
 ```
 
-## 卸载
+卸载
 
 ```bash
-sudo apt-get remove nginx nginx-common # 卸载删除除了配置文件以外的所有文件。
-sudo apt-get purge nginx nginx-common # 卸载所有东东，包括删除配置文件。
-sudo apt-get autoremove # 在上面命令结束后执行，主要是卸载删除Nginx的不再被使用的依赖包。
-sudo apt-get remove nginx-full nginx-common #卸载删除两个主要的包。
+apt-get remove nginx nginx-common # 卸载删除除了配置文件以外的所有文件。
+apt-get purge nginx nginx-common # 卸载所有东东，包括删除配置文件。
+apt-get autoremove # 在上面命令结束后执行，主要是卸载删除Nginx的不再被使用的依赖包。
+apt-get remove nginx-full nginx-common #卸载删除两个主要的包。
 ```
 
-## 配置
+## 常用配置
 
-> 将 SSL 签名保存 /etc/nginx/certs/...
+### 设置 HTTPS
 
-### 新建
+将 SSL 签名保存 `/etc/nginx/certs/*`
 
-```bash
-cd /etc/nginx/conf.d/
-touch ***.conf
-```
+新建 `/etc/nginx/conf.d/***.conf`
 
-### 编辑
+内容如下：
 
-```bash
-vi /etc/nginx/conf.d/***.conf
-```
-
-```text
+```xml
 server {
     listen 443;
     server_name www.todev.cn;
