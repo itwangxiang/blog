@@ -20,6 +20,23 @@ apt-get autoremove # 在上面命令结束后执行，主要是卸载删除Nginx
 apt-get remove nginx-full nginx-common #卸载删除两个主要的包。
 ```
 
+### centos
+
+安装/卸载
+
+```bash
+## 安装
+yum install nginx
+systemctl start nginx.service
+## 卸载
+systemctl stop nginx.service
+systemctl disable nginx.service
+rm -rf /usr/sbin/nginx
+rm -rf /etc/nginx
+rm -rf /etc/init.d/nginx
+yum remove nginx
+```
+
 ## 常用配置
 
 ### 设置 HTTPS
