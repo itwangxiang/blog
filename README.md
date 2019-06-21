@@ -13,6 +13,7 @@
   - [核心篇](#核心篇)
   - [开源篇](#开源篇)
 - [VPS](#VPS)
+  - [Linux](#Linux)
   - [Ubuntu](#ubuntu)
   - [Centos](#centos)
   - [Nginx](#nginx)
@@ -334,6 +335,12 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 ## VPS
 
+### Linux
+
+- [概要](docs/vps/linux.md)
+  
+  后台任务，杀掉
+
 ### Ubuntu
 
 - [概要](docs/vps/ubuntu.md)
@@ -348,11 +355,11 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 - [概要](docs/vps/nginx.md)
 
+## Tool
+
 ### MySql
 
-- [概要](docs/vps/mysql.md)
-
-## Tool
+- [概要](docs/tool/mysql.md)
 
 ### Git
 
