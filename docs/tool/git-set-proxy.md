@@ -21,3 +21,11 @@ git config --global --unset https.proxy
 git config --global --unset http.https://github.com.proxy
 git config --global --unset https.https://github.com.proxy
 ```
+
+## Win 命令代理
+
+```bash
+set http_proxy=http://127.0.0.1:1080
+set https_proxy=http://127.0.0.1:1080
+curl https://www.google.com # 测试
+```
