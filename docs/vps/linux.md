@@ -24,3 +24,12 @@ chmod 777 test.txt # 设置 test.txt 文件为所有用户都有读、写、执�
 -rw-rw-rw- (666)  所有用户都有文件读、写权限。
 -rwxrwxrwx (777)  所有用户都有读、写、执行权限。
 ```
+
+### 环境配置
+
+```bash
+# 编辑
+vi ~/.bash_profile
+# 更新
+source ~/.bash_profile
+```
