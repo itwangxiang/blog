@@ -13,10 +13,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearSnapHelper
-import com.blankj.utilcode.util.LogUtils
-import kotlin.math.abs
-import kotlin.math.max
-import kotlin.math.min
 
 class MainActivity : AppCompatActivity() {
 
@@ -36,9 +32,9 @@ class MainActivity : AppCompatActivity() {
             mList.add(R.drawable.pic6)
         }
 
-        LinearSnapHelper().attachToRecyclerView(recyclerView)
         recyclerView.layoutManager = GalleryLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = CardAdapter(mList)
+        LinearSnapHelper().attachToRecyclerView(recyclerView)
     }
 }
 
@@ -85,12 +81,12 @@ class GalleryLayoutManager : LinearLayoutManager {
     }
 
     override fun scrollHorizontallyBy(dx: Int, recycler: RecyclerView.Recycler, state: RecyclerView.State?): Int {
-        val centerPos = getCenterVisibleItemPosition()
+        val centerPos = findFirstVisibleItemPosition()
         findViewByPosition(centerPos)?.run {
             scaleX = 1.05f
             scaleY = 1.05f
         }
-        findViewByPosition(centerPos -1)?.run {
+        findViewByPosition(centerPos - 1)?.run {
             scaleX = 1f
             scaleY = 1f
         }
