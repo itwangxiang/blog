@@ -2,6 +2,9 @@
 
 > vimtutor zh_CN 进入《Vim 使用教程》
 
+>![vim](/asset/img/vim_key.png)
+
+
 ## 模式
 
 - `ESC` 返回正常模式
