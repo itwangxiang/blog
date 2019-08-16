@@ -18,8 +18,10 @@ class LineChartActivity : AppCompatActivity() {
 
     private val mSdf = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
 
-    private val mTemperatureMap = mutableMapOf<Long, Temperature>()
-    private val mTempTemperatures = mutableListOf<Temperature>()
+    private val mLineChartDateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
+    private var mLineChartCount = 120
+    private var mLineChartRefreshTime = System.currentTimeMillis()
+    private var mLineChartValues = mutableMapOf<Long, Int>()
     private lateinit var mLineDataSetTime: LineDataSet
     private lateinit var mLineDataSetData: LineDataSet
     private var mLineDataSetTimeEntryList = mutableListOf<Entry>()
@@ -78,7 +80,7 @@ class LineChartActivity : AppCompatActivity() {
             //设置竖网格
             setDrawGridLines(false)
             setDrawAxisLine(false)
-            labelCount = 10
+            labelCount = 3
 
             //设置X轴文字
             textSize = 9f
@@ -88,9 +90,7 @@ class LineChartActivity : AppCompatActivity() {
             granularity = 1f
             //设置X轴值
             valueFormatter = IAxisValueFormatter { value, _ ->
-                if (mTempTemperatures.size > value.toInt()) {
-                    mTempTemperatures[value.toInt()].date
-                } else ""
+                mLineChartDateFormat.format(mLineChartRefreshTime - (mLineChartCount - value.toInt()) * 1000)
             }
         }
 
@@ -152,25 +152,29 @@ class LineChartActivity : AppCompatActivity() {
                 runOnUiThread {
                     val data = Random().nextInt(399 - 361) + 361
                     addLinerChartData(data)
+                    refreshLinerChartData()
                 }
             }
         }.start()
     }
 
-    private fun setLinerChartXCount(count: Int) {
-        val curDate = System.currentTimeMillis()
+    private fun addLinerChartData(data: Int) {
+        mLineChartValues[System.currentTimeMillis() / 1000] = data
+    }
 
-        mTempTemperatures.clear()
+    private fun setLinerChartXCount(count: Int) {
+        mLineChartCount = count
+        mLineChartRefreshTime = System.currentTimeMillis()
+
         mLineDataSetTimeEntryList.clear()
         mLineDataSetDataEntryList.clear()
-        for (i in 0..count) {
-            val time = curDate - (count - i) * 1000
-            val temperature = Temperature(0, time, mSdf.format(time))
-            if (mTemperatureMap.containsKey(time / 1000)) {
-                temperature.bodyTemperature = mTemperatureMap[time / 1000]!!.bodyTemperature
-            }
+
+        for (i in 0..mLineChartCount) {
             mLineDataSetTimeEntryList.add(Entry(i.toFloat(), 0f))
-            mTempTemperatures.add(temperature)
+            val time = mLineChartRefreshTime / 1000 - (mLineChartCount - i)
+            if (mLineChartValues.containsKey(time)) {
+                mLineDataSetDataEntryList.add(Entry(i.toFloat(), mLineChartValues[time]!!.toFloat()))
+            }
         }
 
         mLineDataSetTime.notifyDataSetChanged()
@@ -180,18 +184,15 @@ class LineChartActivity : AppCompatActivity() {
         chart.invalidate()
     }
 
-    private fun addLinerChartData(data: Int) {
-        val time = System.currentTimeMillis()
-        val temperature = Temperature(data, time, mSdf.format(time))
-        mTemperatureMap[time / 1000] = temperature
-        mTempTemperatures.removeAt(0)
-        mTempTemperatures.add(temperature)
-
+    private fun refreshLinerChartData() {
+        mLineChartRefreshTime = System.currentTimeMillis()
         mLineDataSetDataEntryList.clear()
-        mTempTemperatures.forEachIndexed { index: Int, value: Temperature ->
-            if (value.bodyTemperature > 0) mLineDataSetDataEntryList.add(Entry(index.toFloat(), value.bodyTemperature.toFloat()))
+        for (i in 0..mLineChartCount) {
+            val time = mLineChartRefreshTime / 1000 - (mLineChartCount - i)
+            if (mLineChartValues.containsKey(time)) {
+                mLineDataSetDataEntryList.add(Entry(i.toFloat(), mLineChartValues[time]!!.toFloat()))
+            }
         }
-
         chart.invalidate()
     }
 
