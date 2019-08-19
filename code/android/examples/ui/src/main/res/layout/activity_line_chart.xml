@@ -15,14 +15,25 @@
             android:id="@+id/btnTwo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2m" />
-
+            android:text="2分钟" />
 
         <Button
             android:id="@+id/btnTen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10m" />
+            android:text="10分钟" />
+
+        <Button
+            android:id="@+id/btn30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30分钟" />
+
+        <Button
+            android:id="@+id/btn60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1小时" />
     </LinearLayout>
 
     <com.github.mikephil.charting.charts.LineChart
