@@ -3,6 +3,7 @@ package cn.todev.ui
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
@@ -10,6 +11,8 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.IValueFormatter
+import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.activity_line_chart2.*
 import java.text.SimpleDateFormat
 import java.util.*
@@ -60,6 +63,19 @@ class LineChart2Activity : AppCompatActivity() {
         chart.setPinchZoom(false)
 
         chart.marker = MyMarkerView(this, R.layout.ui_marker_view).apply { chartView = chart }
+        chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+            var prevEntry: Entry? = null
+
+            override fun onNothingSelected() {
+                prevEntry?.icon = null
+            }
+
+            override fun onValueSelected(e: Entry?, h: Highlight?) {
+                prevEntry?.icon = null
+                e?.icon = ContextCompat.getDrawable(this@LineChart2Activity, R.drawable.ic_oval)
+                prevEntry = e
+            }
+        })
 
         //X轴
         chart.xAxis.run {
@@ -116,7 +132,7 @@ class LineChart2Activity : AppCompatActivity() {
                     mode = LineDataSet.Mode.CUBIC_BEZIER
                     lineWidth = 1.5f
                     setDrawCircles(false)
-                    valueTextSize = 0f
+                    setDrawValues(false)
                 }
 
         chart.data = LineData(mLineDataSetData).apply {
