@@ -17,7 +17,8 @@ import java.util.*
 class LineChart2Activity : AppCompatActivity() {
 
     private val mLineChartDateFormat = SimpleDateFormat("yyyy/MM/dd HH:mm", Locale.getDefault())
-    private var mLineChartCount = 60 / 30 * 24
+    private var mDefaultCount = 60 / 30 * 24
+    private var mLineChartCount = mDefaultCount
     private lateinit var mLineDataSetData: LineDataSet
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +28,18 @@ class LineChart2Activity : AppCompatActivity() {
         initLinerChart()
 
         btn1.setOnClickListener {
-            setLineChartVisibleCount(mLineChartCount)
+            mLineChartCount = mDefaultCount
+            setLineChartVisibleCount()
         }
 
         btn2.setOnClickListener {
-            setLineChartVisibleCount(mLineChartCount * 7)
+            mLineChartCount = mDefaultCount * 7
+            setLineChartVisibleCount()
         }
 
         btn3.setOnClickListener {
-            setLineChartVisibleCount(mLineChartCount * 30)
+            mLineChartCount = mDefaultCount * 30
+            setLineChartVisibleCount()
         }
     }
 
@@ -71,7 +75,7 @@ class LineChart2Activity : AppCompatActivity() {
             //设置X轴避免图表或屏幕的边缘的第一个和最后一个轴中的标签条目被裁剪
             setAvoidFirstLastClipping(true)
 
-            granularity
+            labelCount = 3
 
             //设置X轴值
             valueFormatter = IAxisValueFormatter { value, _ ->
@@ -122,9 +126,10 @@ class LineChart2Activity : AppCompatActivity() {
         initData()
     }
 
-    private fun setLineChartVisibleCount(count: Int) {
+    private fun setLineChartVisibleCount() {
         chart.fitScreen()
-        chart.setVisibleXRangeMaximum(count.toFloat())
+        val allCount = mLineDataSetData.entryCount
+        chart.setVisibleXRangeMaximum(if (mLineChartCount > allCount) allCount.toFloat() else mLineChartCount.toFloat())
         chart.highlighted?.takeIf { !it.isNullOrEmpty() }?.run {
             chart.moveViewToX(this[0].x)
         }
@@ -134,24 +139,25 @@ class LineChart2Activity : AppCompatActivity() {
         mLineDataSetData.clear()
 
         temperatures.forEachIndexed { index, temperature ->
-            mLineDataSetData.addEntry(Entry(index.toFloat(), temperature.bodyTemperature.toFloat(), temperature))
+            mLineDataSetData.addEntry(Entry(index.toFloat(), (temperature.bodyTemperature / 10).toFloat(), temperature))
         }
 
         mLineDataSetData.notifyDataSetChanged()
         chart.data.notifyDataChanged()
         chart.notifyDataSetChanged()
-        chart.invalidate()
-        chart.setVisibleXRangeMaximum(mLineChartCount.toFloat())
+        chart.highlightValues(null)
+
+        setLineChartVisibleCount()
     }
 
     private fun initData() {
         val temperatures = mutableListOf<Temperature>()
 
         val calendar = Calendar.getInstance()
-        calendar.set(2018, 5, 20)
-        repeat(60 / 30 * 24 * 30) {
-            val data = Random().nextInt(399 - 361) + 361
-            temperatures.add(Temperature(data, calendar.timeInMillis))
+        calendar.set(2018, 6, 20)
+        repeat(60 / 30 * 24 * 60) {
+            //            val data = Random().nextInt(399 - 361) + 361
+            temperatures.add(Temperature(3800, calendar.timeInMillis))
             calendar.add(Calendar.MINUTE, 30)
         }
 
