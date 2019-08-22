@@ -33,7 +33,7 @@ public class MyMarkerView extends MarkerView {
     // content (user-interface)
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
-        tvContent.setText(String.format(Locale.getDefault(), "%.1f", e.getY() / 10));
+        tvContent.setText(String.format(Locale.getDefault(), "%.1f", e.getY()));
         super.refreshContent(e, highlight);
     }
 

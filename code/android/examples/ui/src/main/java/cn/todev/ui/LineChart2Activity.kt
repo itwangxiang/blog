@@ -10,7 +10,6 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
-import com.github.mikephil.charting.formatter.IValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.activity_line_chart2.*
@@ -96,7 +95,7 @@ class LineChart2Activity : AppCompatActivity() {
             //设置X轴值
             valueFormatter = IAxisValueFormatter { value, _ ->
                 try {
-                    val temperature = mLineDataSetData.getEntriesForXValue(value)[0].data as Temperature
+                    val temperature = mLineDataSetData.getEntriesForXValue(value)[0].data as TempChartData
                     mLineChartDateFormat.format(temperature.measureTime)
                 } catch (e: Exception) {
                     e.printStackTrace()
@@ -114,10 +113,12 @@ class LineChart2Activity : AppCompatActivity() {
             //设置Y轴文字
             textColor = Color.parseColor("#434B61")
             textSize = 12f
-            valueFormatter = IAxisValueFormatter { value, _ -> String.format("%.1f", value / 10) }
+            valueFormatter = IAxisValueFormatter { value, _ -> String.format("%.1f", value) }
 
-            axisMinimum = 301f
-            axisMaximum = 429f
+            labelCount = 8
+
+            axisMinimum = 30.1f
+            axisMaximum = 42.9f
             enableGridDashedLine(5f, 2f, 0f)
         }
 
@@ -127,12 +128,12 @@ class LineChart2Activity : AppCompatActivity() {
         //设置数据标签
         mLineDataSetData = LineDataSet(mutableListOf(), null)
                 .apply {
-                    valueFormatter = IValueFormatter { value, _, _, _ -> String.format("%.1f", value / 10) }
                     color = Color.parseColor("#FFA73A")
                     mode = LineDataSet.Mode.CUBIC_BEZIER
                     lineWidth = 1.5f
-                    setDrawCircles(false)
+                    setDrawCircles(false) //设置是否绘制圆形指示器
                     setDrawValues(false)
+                    setDrawHighlightIndicators(false) //设置是否有拖拽高亮指示器
                 }
 
         chart.data = LineData(mLineDataSetData).apply {
@@ -151,11 +152,11 @@ class LineChart2Activity : AppCompatActivity() {
         }
     }
 
-    private fun setLineChartData(temperatures: List<Temperature>) {
+    private fun setLineChartData(tempChartDataList: List<TempChartData>) {
         mLineDataSetData.clear()
 
-        temperatures.forEachIndexed { index, temperature ->
-            mLineDataSetData.addEntry(Entry(index.toFloat(), (temperature.bodyTemperature / 10).toFloat(), temperature))
+        tempChartDataList.forEachIndexed { index, temperature ->
+            mLineDataSetData.addEntry(Entry(index.toFloat(), (temperature.bodyTemperature).toFloat(), temperature))
         }
 
         mLineDataSetData.notifyDataSetChanged()
@@ -167,13 +168,12 @@ class LineChart2Activity : AppCompatActivity() {
     }
 
     private fun initData() {
-        val temperatures = mutableListOf<Temperature>()
+        val temperatures = mutableListOf<TempChartData>()
 
         val calendar = Calendar.getInstance()
         calendar.set(2018, 6, 20)
         repeat(60 / 30 * 24 * 60) {
-            //            val data = Random().nextInt(399 - 361) + 361
-            temperatures.add(Temperature(3800, calendar.timeInMillis))
+            temperatures.add(TempChartData(38, calendar.timeInMillis))
             calendar.add(Calendar.MINUTE, 30)
         }
 
@@ -181,4 +181,4 @@ class LineChart2Activity : AppCompatActivity() {
     }
 }
 
-data class Temperature(var bodyTemperature: Int, var measureTime: Long)
+data class TempChartData(var bodyTemperature: Int, var measureTime: Long)
