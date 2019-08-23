@@ -3,6 +3,8 @@ package cn.todev.ui
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import com.blankj.utilcode.util.LogUtils
 import com.github.mikephil.charting.components.LimitLine
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
@@ -12,18 +14,17 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.formatter.IValueFormatter
 import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import kotlinx.android.synthetic.main.activity_line_chart.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 class LineChartActivity : AppCompatActivity() {
 
     private val mLineChartDateFormat = SimpleDateFormat("HH:mm:ss", Locale.getDefault())
-    private var mLineChartCount = 120
-    private var mLineChartRefreshTime = System.currentTimeMillis()
+    private var mLineChartCount = 60
+    private var mLineChartInterval = 2
+    private var mLineChartUpdateTime = System.currentTimeMillis()
     private var mLineChartValues = mutableMapOf<Long, Int>()
     private lateinit var mLineDataSetTime: LineDataSet
     private lateinit var mLineDataSetData: LineDataSet
@@ -35,19 +36,19 @@ class LineChartActivity : AppCompatActivity() {
         initLinerChart()
 
         btnTwo.setOnClickListener {
-            setLinerChartXCount(60 * 2)
+            setLineChartCount(60)
         }
 
         btnTen.setOnClickListener {
-            setLinerChartXCount(60 * 10)
+            setLineChartCount(60 * 5)
         }
 
         btn30.setOnClickListener {
-            setLinerChartXCount(60 * 30)
+            setLineChartCount(60 * 15)
         }
 
         btn60.setOnClickListener {
-            setLinerChartXCount(60 * 60)
+            setLineChartCount(60 * 30)
         }
     }
 
@@ -63,11 +64,24 @@ class LineChartActivity : AppCompatActivity() {
         chart.isDragEnabled = true
         //设置是否可以缩放
         chart.setScaleEnabled(false)
-        chart.isScaleXEnabled = true
+        chart.isScaleXEnabled = false
         //设置是否能扩大扩小
         chart.setPinchZoom(false)
 
         chart.marker = MyMarkerView(this, R.layout.ui_marker_view).apply { chartView = chart }
+        chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
+            var prevEntry: Entry? = null
+
+            override fun onNothingSelected() {
+                prevEntry?.icon = null
+            }
+
+            override fun onValueSelected(e: Entry?, h: Highlight?) {
+                prevEntry?.icon = null
+                e?.icon = ContextCompat.getDrawable(this@LineChartActivity, R.drawable.ic_oval)
+                prevEntry = e
+            }
+        })
 
         //X轴
         chart.xAxis.run {
@@ -85,7 +99,7 @@ class LineChartActivity : AppCompatActivity() {
 
             //设置X轴值
             valueFormatter = IAxisValueFormatter { value, _ ->
-                mLineChartDateFormat.format(mLineChartRefreshTime - (mLineChartCount - value.toInt()) * 1000)
+                mLineChartDateFormat.format(mLineChartUpdateTime - mLineChartInterval * (mLineChartCount - value.toInt()) * 1000)
             }
         }
 
@@ -126,6 +140,8 @@ class LineChartActivity : AppCompatActivity() {
                     mode = LineDataSet.Mode.CUBIC_BEZIER
                     lineWidth = 1.5f
                     setDrawCircles(false)
+                    setDrawValues(false)
+                    setDrawHighlightIndicators(false)
                 }
 
         chart.data = LineData(mLineDataSetTime, mLineDataSetData).apply {
@@ -133,32 +149,30 @@ class LineChartActivity : AppCompatActivity() {
         }
 
         //设置默认数据
-        setLinerChartXCount(120)
+        setLineChartCount(60)
 
-        GlobalScope.launch {
+        Thread {
             while (true) {
-                delay(1000)
-
                 runOnUiThread {
                     val data = Random().nextInt(399 - 361) + 361
-                    addDateAndRefreshLinerChart(data)
+                    notifyLineChartRefreshData(data)
                 }
+                Thread.sleep(1000)
             }
-        }
+        }.start()
     }
 
-    private fun setLinerChartXCount(count: Int) {
+    private fun setLineChartCount(count: Int) {
         mLineChartCount = count
-        mLineChartRefreshTime = System.currentTimeMillis()
 
         mLineDataSetTime.clear()
         mLineDataSetData.clear()
 
-        for (i in 0..mLineChartCount) {
-            mLineDataSetTime.addEntry(Entry(i.toFloat(), 0f))
-            val time = mLineChartRefreshTime / 1000 - (mLineChartCount - i)
+        repeat(mLineChartCount) {
+            mLineDataSetTime.addEntry(Entry(it.toFloat(), 0f))
+            val time = mLineChartUpdateTime / 1000 - mLineChartInterval * (mLineChartCount - it)
             if (mLineChartValues.containsKey(time)) {
-                mLineDataSetData.addEntry(Entry(i.toFloat(), mLineChartValues[time]!!.toFloat(), time))
+                mLineDataSetData.addEntry(Entry(it.toFloat(), mLineChartValues[time]!!.toFloat(), time))
             }
         }
 
@@ -169,12 +183,15 @@ class LineChartActivity : AppCompatActivity() {
         chart.highlightValues(null)
     }
 
-    private fun addDateAndRefreshLinerChart(data: Int) {
-        mLineChartValues[System.currentTimeMillis() / 1000] = data
+    private fun notifyLineChartRefreshData(data: Int) {
+        val nowTime = System.currentTimeMillis()
+        if (nowTime.toInt() / 1000 % mLineChartInterval != 0) return
 
+        mLineChartUpdateTime = nowTime
+        mLineChartValues[nowTime / 1000] = data
 
         var highlightTime = 0L
-        var highlightNewX = 0F
+        var highlightRefreshX = 0F
         chart.highlighted?.takeIf { !it.isNullOrEmpty() }?.run {
             val highlight = this[0]
             mLineDataSetData.getEntriesForXValue(highlight.x)?.takeIf { !it.isNullOrEmpty() }?.run {
@@ -182,20 +199,21 @@ class LineChartActivity : AppCompatActivity() {
             }
         }
 
-        mLineChartRefreshTime = System.currentTimeMillis()
         mLineDataSetData.clear()
-        for (i in 0..mLineChartCount) {
-            val time = mLineChartRefreshTime / 1000 - (mLineChartCount - i)
+        repeat(mLineChartCount) {
+            val time = mLineChartUpdateTime / 1000 - mLineChartInterval * (mLineChartCount - it)
             if (mLineChartValues.containsKey(time)) {
-                mLineDataSetData.addEntry(Entry(i.toFloat(), mLineChartValues[time]!!.toFloat(), time))
-                if (time == highlightTime) highlightNewX = i.toFloat()
+                if (time == highlightTime) highlightRefreshX = it.toFloat()
+                mLineDataSetData.addEntry(Entry(it.toFloat(), mLineChartValues[time]!!.toFloat(), time))
             }
         }
 
-        if (highlightNewX <= 0) {
+        LogUtils.d("data - size: ======================================  ${mLineDataSetData.entryCount} / ${mLineChartValues.size}")
+
+        if (highlightRefreshX <= 0) {
             chart.highlightValues(null)
         } else {
-            chart.highlightValues(arrayOf(Highlight(highlightNewX, 1, 1)))
+            chart.highlightValue(highlightRefreshX, 1)
         }
     }
 
