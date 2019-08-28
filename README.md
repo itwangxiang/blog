@@ -23,6 +23,7 @@
   - [Mysql](#Mysql)
   - [Git](#git)
   - [Vim](#vim)
+  - [ADB](#adb)
   - [Shadowsocks](https://github.com/itwangxiang/docs/wiki/VPS.Shadowsocks)
 - [Asset](#asset)
 
@@ -418,6 +419,16 @@ go build main.go
 ### Vim
 
 - [概要](docs/tool/vim.md)
+
+### ADB
+
+- 常规
+  
+  ```bash
+  $adb tcpip 5555 //设置远程设备监听端口
+  $adb connect ip:port //连接远程设备
+  $adb reconnect //重新连接设备
+  ```
 
 ## Asset
 
