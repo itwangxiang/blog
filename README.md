@@ -425,9 +425,9 @@ go build main.go
 - 常规
   
   ```bash
-  $adb tcpip 5555 //设置远程设备监听端口
-  $adb connect ip:port //连接远程设备
-  $adb reconnect //重新连接设备
+  adb tcpip 5555 //设置远程设备监听端口
+  adb connect ip:port //连接远程设备
+  adb reconnect //重新连接设备
   ```
 
 ## Asset
