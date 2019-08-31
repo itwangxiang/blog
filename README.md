@@ -428,6 +428,7 @@ go build main.go
   adb tcpip 5555 //设置远程设备监听端口
   adb connect ip:port //连接远程设备
   adb reconnect //重新连接设备
+  adb shell am start -n ｛包(package)名｝/｛包名｝.{活动(activity)名称} //启动程序
   ```
 
 ## Asset
