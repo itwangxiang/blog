@@ -429,6 +429,7 @@ go build main.go
   adb connect ip:port //连接远程设备
   adb reconnect //重新连接设备
   adb shell am start -n ｛package｝/.{activity} //启动程序
+  adb shell setprop persist.service.adb.tcp.port 5555 //设置系统重启后，远程设备监听端口
   ```
 
 ## Asset
