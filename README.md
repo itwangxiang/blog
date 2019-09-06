@@ -12,6 +12,7 @@
   - [原理篇](#原理篇)
   - [核心篇](#核心篇)
   - [开源篇](#开源篇)
+  - [问题日志](#问题日志)
 - [Go](#Go)
   - [交叉编译](#交叉编译)
 - [VPS](#VPS)
@@ -331,15 +332,16 @@ public static void quickSort(int[] arr, int head, int tail) {
 
   > 适用于 Android 和 Java 的事件总线，可简化 Activities, Fragments, Threads, Services 等之间的通信。减少代码，提高质量
 
-### 工具篇
-
-- 批量渠道打包 - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
-
-
+- 批量渠道打包 
+    
+    - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
 
 
+### 问题日志
 
 
+* `Android Resources$NotFoundException Crash Report` 
+  * 将 src 引用的文件 mipmap 移到 drawable 目录下
 
 
 
