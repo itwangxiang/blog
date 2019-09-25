@@ -23,6 +23,7 @@ import cn.todev.examples.ui.EventFirstActivity;
 import cn.todev.examples.ui.HandlerActivity;
 import cn.todev.examples.ui.LruCacheActivity;
 import cn.todev.examples.ui.OSSActivity;
+import cn.todev.examples.ui.ScreenSwitchActivity;
 import cn.todev.examples.ui.ServiceFirstActivity;
 import cn.todev.examples.ui.ThreadPoolActivity;
 import cn.todev.examples.ui.ViewActivity;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         level0Item.addSubItem(new Level1Item("Service", ServiceFirstActivity.class));
         level0Item.addSubItem(new Level1Item("BroadcastReceiver", null));
         level0Item.addSubItem(new Level1Item("Content Provider", null));
+        level0Item.addSubItem(new Level1Item("屏幕切换", ScreenSwitchActivity.class));
         res.add(level0Item);
 
         level0Item = new Level0Item("View 篇");
