@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-<!--        android:configChanges="orientation|keyboardHidden|screenSize"-->
+        <activity android:name=".ui.WindowActivity"/>
         <activity
             android:name=".ui.ScreenSwitchActivity"
             android:screenOrientation="portrait" />

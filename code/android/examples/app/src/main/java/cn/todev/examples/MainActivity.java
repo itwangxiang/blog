@@ -27,6 +27,7 @@ import cn.todev.examples.ui.ScreenSwitchActivity;
 import cn.todev.examples.ui.ServiceFirstActivity;
 import cn.todev.examples.ui.ThreadPoolActivity;
 import cn.todev.examples.ui.ViewActivity;
+import cn.todev.examples.ui.WindowActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         level0Item.addSubItem(new Level1Item("BroadcastReceiver", null));
         level0Item.addSubItem(new Level1Item("Content Provider", null));
         level0Item.addSubItem(new Level1Item("屏幕切换", ScreenSwitchActivity.class));
+        level0Item.addSubItem(new Level1Item("悬浮窗", WindowActivity.class));
         res.add(level0Item);
 
         level0Item = new Level0Item("View 篇");
