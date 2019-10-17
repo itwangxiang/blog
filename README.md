@@ -417,6 +417,7 @@ go build main.go
 
 - [概要](docs/tool/git.md)
 - [设置代理](docs/tool/git-set-proxy.md)
+- [Commit Message 规范](docs/tool/git-commit-message-specification.md)
 
 ### Vim
 
