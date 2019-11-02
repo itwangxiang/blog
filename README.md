@@ -106,9 +106,16 @@ public static void quickSort(int[] arr, int head, int tail) {
 }
 ```
 
-### 设计模式
+### [设计模式](docs/basics/design-pattern.md)
 
 [todo](https://github.com/itwangxiang/docs/issues/1)
+
+#### 创建型
+
+#### 结构型
+
+#### 行为型
+
 
 ## Java
 
