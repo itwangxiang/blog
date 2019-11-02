@@ -349,6 +349,8 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 * `Android Resources$NotFoundException Crash Report` 
   * 将 src 引用的文件 mipmap 移到 drawable 目录下
+* `Android ClickableSpan not calling onClick`
+  * `setMovementMethod(LinkMovementMethod.getInstance());`
 
 
 
