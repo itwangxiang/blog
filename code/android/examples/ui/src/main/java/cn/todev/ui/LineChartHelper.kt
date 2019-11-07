@@ -1,24 +1,20 @@
 package cn.todev.ui
 
-import android.content.Context
 import android.graphics.Color
-import android.widget.TextView
-import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.components.MarkerView
+import com.github.mikephil.charting.components.IMarker
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
-import com.github.mikephil.charting.highlight.Highlight
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener
-import com.github.mikephil.charting.utils.MPPointF
 import java.text.SimpleDateFormat
 import java.util.*
 
-class LineChartHelper(val context: Context, private val chart: LineChart) {
+class LineChartHelper(private val chart: LineChart) {
 
     private var mHourFormat = SimpleDateFormat("M/d HH", Locale.getDefault())
     private var mDayFormat = SimpleDateFormat("M月d日", Locale.getDefault())
@@ -27,37 +23,20 @@ class LineChartHelper(val context: Context, private val chart: LineChart) {
     private var xInterval = ChartInterval.CHART_DAY
     private var xMaxCount = getXDefaultCount(xInterval) //X 轴的最大数
 
-    //设置时间标签
-    private var mLineDataSetTime: LineDataSet = LineDataSet(mutableListOf(), null)
-
-    //设置数据标签
-    private var mLineDataSetValue: LineDataSet = LineDataSet(mutableListOf(), null)
-            .apply {
-                color = Color.parseColor("#FF62DBB3")
-                mode = LineDataSet.Mode.CUBIC_BEZIER
-                lineWidth = 1.5f
-                setDrawCircles(false) //设置是否绘制圆形指示器
-                setDrawValues(false) //是否绘制数据值
-                setDrawHighlightIndicators(false) //设置是否有拖拽高亮指示器
-            }
-
-    fun init(
+    fun initChart(
             yMin: Float? = 0f,
             yMax: Float? = null,
-            yFormat: (value: Float) -> String = { it.toString() },
-            xHourPattern: String = "M/d HH",
-            xDayPattern: String = "M月d日",
-            xYearPattern: String = "yyyy/MM"
+            yFormat: (value: Float) -> String = { it.toString() }
     ) {
 
-        mHourFormat = SimpleDateFormat(xHourPattern, Locale.getDefault())
-        mDayFormat = SimpleDateFormat(xDayPattern, Locale.getDefault())
-        mYearFormat = SimpleDateFormat(xYearPattern, Locale.getDefault())
-
-        chart.description = null //设置描写
-        chart.legend.isEnabled = false //设置图例关
-        chart.setDrawBorders(false) //设置是否显示边界
-        chart.setBackgroundColor(Color.WHITE) //设置背景色
+        //设置描写
+        chart.description = null
+        //设置图例关
+        chart.legend.isEnabled = false
+        //设置是否显示边界
+        chart.setDrawBorders(false)
+        //设置背景色
+        chart.setBackgroundColor(Color.WHITE)
 
         //设置触摸(关闭影响下面3个属性)
         chart.setTouchEnabled(true)
@@ -68,32 +47,6 @@ class LineChartHelper(val context: Context, private val chart: LineChart) {
         chart.isScaleXEnabled = false
         //设置是否能扩大扩小
         chart.setPinchZoom(false)
-
-        chart.marker = object : MarkerView(context, R.layout.ui_marker_view) {
-
-            var tvContent: TextView = findViewById(R.id.tvContent)
-
-            override fun refreshContent(e: Entry, highlight: Highlight) {
-                tvContent.text = yFormat(e.y)
-                super.refreshContent(e, highlight)
-            }
-
-            override fun getOffset() = MPPointF((-(width / 2)).toFloat(), (-height).toFloat())
-        }
-
-        chart.setOnChartValueSelectedListener(object : OnChartValueSelectedListener {
-            var prevEntry: Entry? = null
-
-            override fun onNothingSelected() {
-                prevEntry?.icon = null
-            }
-
-            override fun onValueSelected(e: Entry?, h: Highlight?) {
-                prevEntry?.icon = null
-                e?.icon = ContextCompat.getDrawable(context, R.drawable.ic_oval)
-                prevEntry = e
-            }
-        })
 
         //X轴
         chart.xAxis.run {
@@ -110,6 +63,9 @@ class LineChartHelper(val context: Context, private val chart: LineChart) {
             textSize = 9f
             //设置X轴避免图表或屏幕的边缘的第一个和最后一个轴中的标签条目被裁剪
             setAvoidFirstLastClipping(true)
+
+            axisMinimum = 0f
+            axisMaximum = getXDefaultCount(xInterval).toFloat()
 
             //设置X轴值
             valueFormatter = IAxisValueFormatter { value, _ -> getXLabelByXValue(value) }
@@ -135,52 +91,135 @@ class LineChartHelper(val context: Context, private val chart: LineChart) {
 
         //Y轴(右)
         chart.axisRight.isEnabled = false
-
-        chart.data = LineData(mLineDataSetTime, mLineDataSetValue).apply {
-            isHighlightEnabled = true
-        }
-
-        chart.invalidate()
     }
 
-    fun setLinerData(data: Map<Long, Float> = mapOf(), interval: ChartInterval = xInterval) {
+    /**
+     * 设置 X 轴时间格式化
+     */
+    fun setDateFormat(
+            hourFormat: String = "M/d HH",
+            dayFormat: String = "M月d日",
+            yearFormat: String = "yyyy/MM"
+    ) {
+        mHourFormat = SimpleDateFormat(hourFormat, Locale.getDefault())
+        mDayFormat = SimpleDateFormat(dayFormat, Locale.getDefault())
+        mYearFormat = SimpleDateFormat(yearFormat, Locale.getDefault())
+    }
+
+    /**
+     * 设置 LineDataSet
+     */
+    fun setLineDataSet(dataSets: List<ILineDataSet> = arrayListOf(LineDataSet(listOf(), null)
+            .apply {
+                color = Color.parseColor("#FF62DBB3")
+                mode = LineDataSet.Mode.CUBIC_BEZIER
+                lineWidth = 1.5f
+                setDrawCircles(false) //设置是否绘制圆形指示器
+                setDrawValues(false) //是否绘制数据值
+                setDrawHighlightIndicators(false) //设置是否有拖拽高亮指示器
+            })) {
+        chart.data = LineData(dataSets)
+    }
+
+    /**
+     * 设置自定义图表数据标注
+     */
+    fun setLinerChartMarker(marker: IMarker) {
+        chart.marker = marker
+    }
+
+    /**
+     * 设置选择回调
+     */
+    fun setOnChartValueSelectedListener(selectedListener: OnChartValueSelectedListener) {
+        chart.setOnChartValueSelectedListener(selectedListener)
+    }
+
+    /**
+     * 设置 LinerChart 数据
+     */
+    fun setLinerChartData(data: Map<Long, Float>, interval: ChartInterval = xInterval) {
+        val multipleData = mutableMapOf<Long, List<Float>>()
+        data.entries.forEach {
+            multipleData[it.key] = listOf(it.value)
+        }
+        setLinerChartMultipleData(multipleData, interval)
+    }
+
+    /**
+     * 设置 LinerChart 数据，同一个时间，Y 轴 多条数据
+     */
+    fun setLinerChartMultipleData(data: Map<Long, List<Float>>, interval: ChartInterval = xInterval) {
         xInterval = interval
 
-        mLineDataSetTime.clear()
-        mLineDataSetValue.clear()
+        val dataSets: List<ILineDataSet>
+        if (chart.data != null && chart.data.dataSetCount > 0) {
+            dataSets = chart.data.dataSets
+        } else {
+            dataSets = listOf(LineDataSet(listOf(), null)
+                    .apply {
+                        color = Color.parseColor("#FF62DBB3")
+                        mode = LineDataSet.Mode.CUBIC_BEZIER
+                        lineWidth = 1.5f
+                        setDrawCircles(false) //设置是否绘制圆形指示器
+                        setDrawValues(false) //是否绘制数据值
+                        setDrawHighlightIndicators(false) //设置是否有拖拽高亮指示器
+                    })
+            chart.data = LineData(dataSets)
+        }
+        val dataSetCount = dataSets.size
 
         xMaxCount = getXDefaultCount(interval)
 
-        val dataMapByIndex = mutableMapOf<Int, Float>()
+        val dataSetValuesMapByIndex = mutableMapOf<Int, ArrayList<Entry>>()
+
         if (data.isNotEmpty()) {
-            val minTime = data.minBy { it.key }!!
-            val offset = calcMinOffset(interval, Date(minTime.key)) + 1
-            if (offset > xMaxCount) xMaxCount = offset
+            //计算 X 轴最大数，由数据中最小时间与当前间隔末尾时间的差
+            run {
+                val minTime = data.minBy { it.key }!!
+                val offset = calcMinOffset(interval, Date(minTime.key)) + 1
+                if (offset > xMaxCount) xMaxCount = offset
+            }
 
-            data.entries.sortedBy { it.key }.forEach {
+            //遍历数据，存储在 Map
+            data.entries.forEach {
                 val curOffset = calcMinOffset(interval, Date(it.key)) + 1
-                dataMapByIndex[xMaxCount - curOffset] = it.value
+                val x = (xMaxCount - curOffset).toFloat()
+                val yValues = it.value
+
+                repeat(dataSetCount) { dataSetIndex ->
+                    if (yValues.isNotEmpty() && yValues.size >= dataSetIndex + 1) {
+                        val values = dataSetValuesMapByIndex[dataSetIndex] ?: arrayListOf()
+                        values.add(Entry(x, yValues[dataSetIndex]))
+                        dataSetValuesMapByIndex[dataSetIndex] = values
+                    }
+                }
+            }
+        }
+        //设置X轴最大值
+        chart.xAxis.axisMaximum = xMaxCount.toFloat() - 1
+
+        //取消高亮
+        chart.highlightValues(null)
+        //重置缩放与拖动
+        chart.fitScreen()
+        //设置X轴显示的最大值
+        chart.setVisibleXRangeMaximum(getXDefaultCount(interval).toFloat() - 1)
+        //拖动到末尾
+        chart.moveViewToX(xMaxCount.toFloat() - 1)
+
+        // DataSet 赋值
+        dataSets.forEachIndexed { index, iLineDataSet ->
+            val values = dataSetValuesMapByIndex[index] ?: listOf<Entry>()
+            (iLineDataSet as LineDataSet).run {
+                this.values = values
+                notifyDataSetChanged()
             }
         }
 
-        repeat(xMaxCount) {
-            mLineDataSetTime.addEntry(Entry(it.toFloat(), -1f))
-            if (dataMapByIndex.containsKey(it)) {
-                mLineDataSetValue.addEntry(Entry(it.toFloat(), dataMapByIndex[it]!!))
-            }
-        }
-
-        chart.xAxis.setLabelCount(getXLabelCountByInterval(interval), false)
-
-        mLineDataSetTime.notifyDataSetChanged()
-        mLineDataSetValue.notifyDataSetChanged()
         chart.data.notifyDataChanged()
         chart.notifyDataSetChanged()
         chart.invalidate()
-
-        chart.fitScreen()
-        chart.setVisibleXRangeMaximum(getXDefaultCount(interval).toFloat() - 1)
-        chart.moveViewToX(xMaxCount.toFloat() - 1)
     }
 
     /**
