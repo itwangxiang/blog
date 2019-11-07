@@ -200,6 +200,13 @@ class LineChartHelper(private val chart: LineChart) {
         //设置X轴最大值
         chart.xAxis.axisMaximum = xMaxCount.toFloat() - 1
 
+        //重置缩放与拖动
+        chart.fitScreen()
+        //设置X轴显示的最大值
+        chart.setVisibleXRangeMaximum(getXDefaultCount(interval).toFloat() - 1)
+        //拖动到末尾
+        chart.moveViewToX(xMaxCount.toFloat() - 1)
+
         // DataSet 赋值
         dataSets.forEachIndexed { index, iLineDataSet ->
             val entries = dataSetValuesMapByIndex[index] ?: listOf<Entry>()
@@ -213,12 +220,6 @@ class LineChartHelper(private val chart: LineChart) {
         chart.data.notifyDataChanged()
         chart.notifyDataSetChanged()
 
-        //重置缩放与拖动
-        chart.fitScreen()
-        //设置X轴显示的最大值
-        chart.setVisibleXRangeMaximum(getXDefaultCount(interval).toFloat() - 1)
-        //拖动到末尾
-        chart.moveViewToX(xMaxCount.toFloat() - 1)
         //取消高亮
         chart.highlightValues(null) //或者 chart.invalidate()
     }
