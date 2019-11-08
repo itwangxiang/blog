@@ -224,6 +224,106 @@ class LineChartHelper(private val chart: LineChart) {
         chart.moveViewToX(xMaxCount.toFloat() - 1)
     }
 
+
+
+    /**
+     * 设置 LinerChart 数据(数据时间间隔为一个小时)，入参：数据、一屏数据量，时间范围
+     */
+    fun setLinerChartData(
+            data: Map<Long, Float>,
+            oneScreenCount: Int,
+            beginTime: Long,
+            endTime: Long
+    ) {
+        val multipleData = mutableMapOf<Long, List<Float>>()
+        data.entries.forEach {
+            multipleData[it.key] = listOf(it.value)
+        }
+        setLinerChartMultipleData(multipleData, oneScreenCount, beginTime, endTime)
+    }
+
+    /**
+     * 设置 LinerChart 数据(数据时间间隔为一个小时)，入参：数据、一屏数据量，时间范围
+     */
+    fun setLinerChartMultipleData(
+            data: Map<Long, List<Float>>,
+            oneScreenCount: Int,
+            beginTime: Long,
+            endTime: Long
+    ) {
+        //设置 X轴Format
+        chart.xAxis.valueFormatter = IAxisValueFormatter { value, _ ->
+            mHourFormat.format(Calendar.getInstance().apply {
+                timeInMillis = beginTime
+                add(Calendar.HOUR_OF_DAY, value.toInt())
+            }.time)
+        }
+
+        val timeOffset = calcHourOffset(Date(beginTime), Date(endTime))
+        val visibleXRangeMaximum = if (oneScreenCount > timeOffset) timeOffset else oneScreenCount
+
+        val dataSets: List<ILineDataSet>
+        if (chart.data != null && chart.data.dataSetCount > 0) {
+            dataSets = chart.data.dataSets
+        } else {
+            dataSets = listOf(LineDataSet(listOf(), null)
+                    .apply {
+                        color = Color.parseColor("#FF62DBB3")
+                        mode = LineDataSet.Mode.CUBIC_BEZIER
+                        lineWidth = 1.5f
+                        setDrawCircles(false) //设置是否绘制圆形指示器
+                        setDrawValues(false) //是否绘制数据值
+                        setDrawHighlightIndicators(false) //设置是否有拖拽高亮指示器
+                    })
+            chart.data = LineData(dataSets)
+        }
+        val dataSetCount = dataSets.size
+
+        val dataSetValuesMapByIndex = mutableMapOf<Int, ArrayList<Entry>>()
+
+        if (data.isNotEmpty()) {
+            //遍历数据，存储在 Map
+            data.entries.forEach {
+                val x = calcHourOffset(Date(beginTime), Date(it.key)).toFloat()
+                val yValues = it.value
+
+                repeat(dataSetCount) { dataSetIndex ->
+                    if (yValues.isNotEmpty() && yValues.size >= dataSetIndex + 1) {
+                        val values = dataSetValuesMapByIndex[dataSetIndex] ?: arrayListOf()
+                        values.add(Entry(x, yValues[dataSetIndex]))
+                        dataSetValuesMapByIndex[dataSetIndex] = values
+                    }
+                }
+            }
+        }
+        //设置X轴最大值
+        chart.xAxis.axisMaximum = timeOffset.toFloat() - 1
+
+        // DataSet 赋值
+        dataSets.forEachIndexed { index, iLineDataSet ->
+            val entries = dataSetValuesMapByIndex[index] ?: listOf<Entry>()
+            Collections.sort(entries, EntryXComparator())
+            (iLineDataSet as LineDataSet).run {
+                values = entries
+                notifyDataSetChanged()
+            }
+        }
+
+        chart.data.notifyDataChanged()
+        chart.notifyDataSetChanged()
+
+        //取消高亮
+        chart.highlightValues(null) //或者 chart.invalidate()
+
+        //重置缩放与拖动
+        chart.fitScreen()
+        //设置X轴显示的最大值
+        chart.setVisibleXRangeMaximum(visibleXRangeMaximum.toFloat() - 1)
+        //拖动到末尾
+        chart.moveViewToX(timeOffset.toFloat() - 1)
+    }
+
+
     /**
      * 获取当前时间的间隔数 （天：24小时，周：7天，月：计算得出，年：12月）
      */
