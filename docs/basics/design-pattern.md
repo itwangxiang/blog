@@ -20,8 +20,6 @@
   - StringBuilder
   - StringBuffer
 
-```
-
 
 ## 结构型
 

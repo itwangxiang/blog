@@ -110,11 +110,11 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 [todo](https://github.com/itwangxiang/docs/issues/1)
 
-#### 创建型
+#### [创建型](docs/basics/design-pattern.md#创建型)
 
-#### 结构型
+#### [结构型](docs/basics/design-pattern.md#结构型)
 
-#### 行为型
+#### [行为型](docs/basics/design-pattern.md#行为型)
 
 
 ## Java
