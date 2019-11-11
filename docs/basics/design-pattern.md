@@ -12,14 +12,21 @@
 
 ### 工厂模式(Factory)
 
+- JDK 中的案例
+  - Collection - iterator()
+
 ### 单例模式(Singleton)
+
+- JDK 中的案例
+  - Runtime
 
 ### 建造者模式(Builder)
 
 - JDK 中的案例
   - StringBuilder
   - StringBuffer
-
+- Android 中的案例
+  - AlertDialog.Builder
 
 ## 结构型
 
