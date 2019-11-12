@@ -442,6 +442,7 @@ go build main.go
   adb reconnect //重新连接设备
   adb shell am start -n ｛package｝/.{activity} //启动程序
   adb shell setprop persist.service.adb.tcp.port 5555 //设置系统重启后，远程设备监听端口
+  adb shell wifitest -z "W 00:1f:2e:3d:4c:5b" //设置 WI-FI MAC
   ```
 
 ## Asset
