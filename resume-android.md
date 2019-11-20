@@ -17,7 +17,7 @@
 
 ### [上海国民集团](http://www.nahefa.com.cn/) - Android 开发 | 上海 `2019.05 - 至今`
 
-> [智能带屏小康]
+> 智能带屏设备（小康）
 
 - 技术栈：`Kotlin`、`Navigation`、`Bluetooth`、`MPAndroidChart`
 - 负责开机向导模块的开发，涉及虹软的人脸识别，以及舌苔信息的摄像头拍摄
