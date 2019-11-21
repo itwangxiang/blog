@@ -12,7 +12,6 @@
   - [原理篇](#原理篇)
   - [核心篇](#核心篇)
   - [开源篇](#开源篇)
-  - [问题日志](#问题日志)
 - [Go](#Go)
   - [交叉编译](#交叉编译)
 - [VPS](#VPS)
@@ -342,18 +341,6 @@ public static void quickSort(int[] arr, int head, int tail) {
 - 批量渠道打包 
     
     - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
-
-
-### 问题日志
-
-
-* `Android Resources$NotFoundException Crash Report` 
-  * 将 src 引用的文件 mipmap 移到 drawable 目录下
-* `Android ClickableSpan not calling onClick`
-  * `setMovementMethod(LinkMovementMethod.getInstance());`
-
-
-
 
 
 ## Go
