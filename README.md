@@ -120,32 +120,16 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 ### 集合
 
-- Collection: 单列集合
-  - List: 有序集合
-    - ArrayList
-      - 数据结构：`基于泛型数组`
-      - 特点：查询速度快，增删速度慢
-    - LinkedList
-      - 数据结构：`基于链表结构`
-      - 特点：查询速度慢，增删速度快
-    - CopyOnWriteArrayList
-      - 特点：避免了多线程操作的线程安全问题
-      - 原理：先复制，再操作，最后替换
-  - Set: 不能包含重复元素的集合
-    - HashSet: 
-      - 数据结构： `基于哈希表`
-      - 特点：存取无序
-    - TreeSet
-      - 数据结构： `基于二叉树`
-      - 特点：排序
-    - LinkedHashSet
-      - 数据结构： `基于链表和哈希表`
-      - 特点：存取有序
-    - EnumSet
-    - BitSet
-    - ConcurrentSkipListSet
-  - Queue/Deque: 队列
-- Map: 将键映射到值的双列集合
+#### 非线程安全集合
+
+- `List`: 有序集合
+  - ArrayList
+    - 数据结构：`基于泛型数组`
+    - 特点：查询速度快，增删速度慢
+  - LinkedList
+    - 数据结构：`基于链表结构`
+    - 特点：查询速度慢，增删速度快
+- `Map`: 将键映射到值的双列集合
   - HashMap
     - 数据结构： `基于哈希表`
     - 特点：存取无序
@@ -155,11 +139,58 @@ public static void quickSort(int[] arr, int head, int tail) {
   - LinkedHashMap
     - 数据结构： `基于链表和哈希表`
     - 特点：存取有序
-  - WeakHashMap
-  - EnumMap
+  - EnumMap: 
+    - 特点：枚举类型作为键值的Map
+  - IdentityHashMap: 
+    - 特点：使用 “==” 来比较引用
+  - WeakHashMap: 
+    - 特点：将键存储在 WeakReference 中
+    - 场景：用于数据缓存中
+- `Set`: 不能包含重复元素的集合
+  - HashSet: 
+    - 数据结构： `基于哈希表`
+    - 特点：存取无序
+  - TreeSet
+    - 数据结构： `基于二叉树`
+    - 特点：排序
+  - LinkedHashSet
+    - 数据结构： `基于链表和哈希表`
+    - 特点：存取有序
+  - EnumSet: 
+    - 特点：值为枚举类型的Set
+  - BitSet
+- `Queue/Deque`: 队列
+  - ArrayDeque
+    - 特点：基于有首尾指针的数组（环形缓冲区）
+  - PriorityQueue
+    - 特点：基于优先级的队列
+
+#### 线程安全集合
+
+- `List`
+  - CopyOnWriteArrayList
+    - 特点：避免了多线程操作的线程安全问题
+    - 原理：先复制，再操作，最后替换
+    - 场景：用在遍历操作比更新操作多的集合，比如 listeners / observers 集合
+- `Queue/Deque`
+  - ArrayBlockingQueue
+    - 特点：基于数组实现的一个有界阻塞队，大小不能重新定义
+  - ConcurrentLinkedQueue
+    - 特点：基于链表实现的无界队列
+  - DelayQueue
+  - LinkedBlockingQueue / LinkedBlockingDeque
+    - 特点：可选择有界或者无界基于链表的实现
+  - LinkedTransferQueue
+    - 特点：基于链表的无界队列
+  - SynchronousQueue
+    - 特点：有界队列
+- `Map`   
   - ConcurrentHashMap
   - ConcurrentSkipListMap 
-    - `并发有序`
+    - `并发有序`  
+- `Set`  
+  - ConcurrentSkipListSet
+  - CopyOnWriteArraySet   
 
 ### 线程
 
