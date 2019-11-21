@@ -133,6 +133,11 @@ public static void quickSort(int[] arr, int head, int tail) {
   - HashMap
     - 数据结构： `基于哈希表`
     - 特点：存取无序
+    - 源码
+      - `DEFAULT_INITIAL_CAPACITY` 默认为 16
+      - `MAXIMUM_CAPACITY` 默认为 2 的 30 次幂
+      - `DEFAULT_LOAD_FACTOR` 默认负载因子 0.75
+      - 每次会扩容长度为以前的2倍
   - TreeMap
     - 有序
     - 数据结构 -> `基于红黑树`
