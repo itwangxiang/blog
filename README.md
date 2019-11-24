@@ -116,7 +116,11 @@ public static void quickSort(int[] arr, int head, int tail) {
 - 工厂方法模式 `Factory Method Pattern`
   - UML 图
   ![factory](asset/img/factory_method.jpg)
-  - [FactoryMethodPattern.java](code/java/src/cn/todev/examples/pattern/FactoryMethodPattern.java)
+  - Code
+    - [FactoryMethodPattern.java](code/java/src/cn/todev/examples/pattern/FactoryMethodPattern.java)
+  - Java 中用例
+    - [java.util.Calendar](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
+
 
 - 建造者模式 `Builder Pattern`
 - 单例模式 `Singleton Pattern`
