@@ -22,6 +22,8 @@
 - [Tool](#Tool)
   - [Mysql](#Mysql)
   - [Git](#git)
+    - [设置 Git 代理](#设置-Git-代理)
+    - [Commit Message 规范](#Commit-Message-规范)
   - [Vim](#vim)
   - [ADB](#adb)
   - [Shadowsocks](https://github.com/itwangxiang/docs/wiki/VPS.Shadowsocks)
@@ -483,34 +485,58 @@ go build main.go
 
 ### Git
 
-- [概要](docs/tool/git.md)
-- [代理](docs/tool/git-set-proxy.md)
-  - 设置
-    ```bash
-    git config --global http.proxy http://127.0.0.1:1087
-    git config --global https.proxy https://127.0.0.1:1087
+#### [概要](docs/tool/git.md)
 
-    # 只对 github.com
-    git config --global http.https://github.com.proxy http://127.0.0.1:1087
-    git config --global https.https://github.com.proxy https://127.0.0.1:1087
-    ```
-  - 取消
-    ```bash
-    git config --global --unset http.proxy
-    git config --global --unset https.proxy
+#### 设置 Git 代理
+- 设置
+  ```bash
+  git config --global http.proxy http://127.0.0.1:1087
+  git config --global https.proxy https://127.0.0.1:1087
 
-    # github.com
-    git config --global --unset http.https://github.com.proxy
-    git config --global --unset https.https://github.com.proxy
-    ```
-  - 设置终端临时代理
+  # 只对 github.com
+  git config --global http.https://github.com.proxy http://127.0.0.1:1087
+  git config --global https.https://github.com.proxy https://127.0.0.1:1087
+  ```
+- 取消
+  ```bash
+  git config --global --unset http.proxy
+  git config --global --unset https.proxy
 
-    ```bash
-    export http_proxy=http://127.0.0.1:1080
-    export https_proxy=http://127.0.0.1:1080
-    curl https://www.google.com # 测试
-    ```
-- [Commit Message 规范](docs/tool/git-commit-message-specification.md)
+  # github.com
+  git config --global --unset http.https://github.com.proxy
+  git config --global --unset https.https://github.com.proxy
+  ```
+- 设置终端临时代理
+
+  ```bash
+  export http_proxy=http://127.0.0.1:1080
+  export https_proxy=http://127.0.0.1:1080
+  curl https://www.google.com # 测试
+  ```
+#### [Commit Message 规范](docs/tool/git-commit-message-specification.md)
+```bash
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+```bash
+# head: <type>(<scope>): <subject>
+# - type: feat, fix, docs, style, refactor, test, chore
+# - scope: can be empty (eg. if the change is a global or difficult to assign to a single component)
+# - subject: start with verb (such as 'change'), 50-character line
+#
+# body: 72-character wrapped. This should answer:
+# * Why was this change necessary?
+# * How does it address the problem?
+# * Are there any side effects?
+#
+# footer: 
+# - Include a link to the ticket, if any.
+# - BREAKING CHANGE
+#
+```
 
 ### Vim
 
