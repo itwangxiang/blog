@@ -105,15 +105,23 @@ public static void quickSort(int[] arr, int head, int tail) {
 }
 ```
 
-### [设计模式](docs/basics/design-pattern.md)
+### 设计模式
 
 [todo](https://github.com/itwangxiang/docs/issues/1)
 
-#### [创建型](docs/basics/design-pattern.md#创建型)
+#### 创建型
 
-#### [结构型](docs/basics/design-pattern.md#结构型)
+- 工厂方法模式 `Factory Method Pattern`
+  - UML 图
+  ![factory](asset/img/factory_method.jpg)
+  - [FactoryMethodPattern.java](code/java/src/cn/todev/examples/pattern/FactoryMethodPattern.java)
 
-#### [行为型](docs/basics/design-pattern.md#行为型)
+- 建造者模式 `Builder Pattern`
+- 单例模式 `Singleton Pattern`
+
+#### 结构型
+
+#### 行为型
 
 
 ## Java
