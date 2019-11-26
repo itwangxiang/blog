@@ -7,6 +7,7 @@
   - [设计模式](#设计模式)
 - [Java](#Java)
   - [集合](#集合)
+  - [并发](#并发)
 - [Android](#Android)
   - [基础篇](#基础篇)
   - [原理篇](#原理篇)
@@ -252,11 +253,15 @@ public static void quickSort(int[] arr, int head, int tail) {
 - `参考资料`
   - [50 道 Java 线程面试题](http://www.importnew.com/12773.html)
 
+### 并发
+
+
+
 ## Android
 
 ### 系统架构图
 
-<img src="https://github.com/itwangxiang/blog/blob/master/asset/img/android_system_structure.png" height="900" width="600">
+<img src="asset/img/android_system_structure.png" height="900" width="600">
 
 ### 基础篇
 
