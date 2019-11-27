@@ -212,50 +212,163 @@ public static void quickSort(int[] arr, int head, int tail) {
   - ConcurrentSkipListSet
   - CopyOnWriteArraySet   
 
-### 线程
-
-- 什么是线程？
-
-  线程是操作系统能够进行运算调度的最小单位，它被包含在进程之中，是进程中的实际运作单位
-
-- 线程和进程有什么区别？
-
-  线程是进程的子集，一个进程可以有很多线程，每条线程并行执行不同的任务。不同的进程使用不同的内存空间，而所有的线程共享一片相同的内存空间。别把它和栈内存搞混，每个线程都拥有单独的栈内存用来存储本地数据。
-
-- 如何在 Java 中实现线程？
-
-  在语言层面有两种方式。java.lang.Thread 类的实例就是一个线程但是它需要调用 java.lang.Runnable 接口来执行，由于线程类本身就是调用的 Runnable 接口所以你可以继承 java.lang.Thread 类或者直接调用 Runnable 接口来重写 run()方法实现线程
-
-- Thread 类中的 `start()` 和 `run()` 方法有什么区别？
-
-  `start()` 方法被用来启动新创建的线程，而且 `start()` 内部调用了 `run()` 方法，这和直接调用 `run()` 方法的效果不一样。当你调用 `run()` 方法的时候，只会是在原来的线程中调用，没有新的线程启动，`start()` 方法才会启动新线程
-
-- Java 中 `Runnable` 和 `Callable` 有什么不同？
-
-  Runnable 和 Callable 都代表那些要在不同的线程中执行的任务。
-
-  Runnable 从 JDK1.0 开始就有了，Callable 是在 JDK1.5 增加的。
-
-  它们的主要区别是 Callable 的 `call()` 方法可以返回值和抛出异常，而 Runnable 的 `run()` 方法没有这些功能。Callable 可以返回装载有计算结果的 Future 对象
-
-- 什么是 ThreadLocal 变量？
-
-  ThreadLocal 是 Java 里一种特殊的变量。每个线程都有一个 ThreadLocal 就是每个线程都拥有了自己独立的一个变量，竞争条件被彻底消除了
-
-- 什么是线程池？ 为什么要使用它？
-
-  创建线程要花费昂贵的资源和时间，如果任务来了才创建线程那么响应时间会变长，而且一个进程能创建的线程数有限。
-
-  为了避免这些问题，在程序启动的时候就创建若干线程来响应处理，它们被称为线程池，里面的线程叫工作线程。
-
-  从 JDK1.5 开始，Java API 提供了 Executor 框架让你可以创建不同的线程池
-
-- `参考资料`
-  - [50 道 Java 线程面试题](http://www.importnew.com/12773.html)
-
 ### 并发
 
+#### 线程
 
+- 创建
+  - 继承 `Thread` 并重写 `run()` 方法 - [ThreadExample.java](code/java/src/cn/todev/examples/concurrency/ThreadExample.java)
+  ```java
+  public class ThreadExample extends Thread {
+
+    // run() method contains the code that is executed by the thread.
+    @Override
+    public void run() {
+        System.out.println("Inside : " + Thread.currentThread().getName());
+    }
+
+    public static void main(String[] args) {
+        System.out.println("Inside : " + Thread.currentThread().getName());
+
+        System.out.println("Creating thread...");
+        Thread thread = new ThreadExample();
+
+        System.out.println("Starting thread...");
+        thread.start();
+    }
+  }
+  ```
+  - 实现 `Runnable` 接口 - [RunnableExample.java](code/java/src/cn/todev/examples/concurrency/RunnableExample.java)  
+  ```java
+  public class RunnableExample implements Runnable {
+
+    public static void main(String[] args) {
+        System.out.println("Inside : " + Thread.currentThread().getName());
+
+        System.out.println("Creating Runnable...");
+        Runnable runnable = new RunnableExample();
+
+        System.out.println("Creating Thread...");
+        Thread thread = new Thread(runnable);
+
+        System.out.println("Starting Thread...");
+        thread.start();
+    }
+
+    @Override
+    public void run() {
+        System.out.println("Inside : " + Thread.currentThread().getName());
+    }
+  }
+  ```  
+  - 内部类实现 - [RunnableExampleAnonymousClass.java](code/java/src/cn/todev/examples/concurrency/RunnableExampleAnonymousClass.java)  
+  ```java
+  public class RunnableExampleAnonymousClass {
+
+    public static void main(String[] args) {
+        System.out.println("Inside : " + Thread.currentThread().getName());
+
+        System.out.println("Creating Runnable...");
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Inside : " + Thread.currentThread().getName());
+            }
+        };
+
+        System.out.println("Creating Thread...");
+        Thread thread = new Thread(runnable);
+
+        System.out.println("Starting Thread...");
+        thread.start();
+    }
+  }
+  ```
+- 休眠
+  - 使用 `sleep()`
+- 等待
+  - 使用 `join()`
+
+#### `ExecutorService` 和 `Thread Pools`
+
+- Executors 框架
+  - 优点
+    - 线程创建
+    - 线程管理
+    - 任务提交和执行
+  - 方法
+    - `execute` - 执行任务
+    - `submit` - 提交任务
+    - `shutdown()` - 停止接受新任务，等待先前提交的任务执行，然后终止执行程序
+    - `shutdownNow()` - 中断正在运行的任务并立即关闭执行程序
+  - Code - - [ExecutorsExample.java](code/java/src/cn/todev/examples/concurrency/ExecutorsExample.java) 
+  ```java
+  import java.util.concurrent.ExecutorService;
+  import java.util.concurrent.Executors;
+  import java.util.concurrent.TimeUnit;
+
+  public class ExecutorsExample {
+      public static void main(String[] args) {
+          System.out.println("Inside : " + Thread.currentThread().getName());
+
+          System.out.println("Creating Executor Service with a thread pool of Size 2");
+          ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+          Runnable task1 = () -> {
+              System.out.println("Executing Task1 inside : " + Thread.currentThread().getName());
+              try {
+                  TimeUnit.SECONDS.sleep(2);
+              } catch (InterruptedException ex) {
+                  throw new IllegalStateException(ex);
+              }
+          };
+
+          Runnable task2 = () -> {
+              System.out.println("Executing Task2 inside : " + Thread.currentThread().getName());
+              try {
+                  TimeUnit.SECONDS.sleep(4);
+              } catch (InterruptedException ex) {
+                  throw new IllegalStateException(ex);
+              }
+          };
+
+          Runnable task3 = () -> {
+              System.out.println("Executing Task3 inside : " + Thread.currentThread().getName());
+              try {
+                  TimeUnit.SECONDS.sleep(3);
+              } catch (InterruptedException ex) {
+                  throw new IllegalStateException(ex);
+              }
+          };
+
+
+          System.out.println("Submitting the tasks for execution...");
+          executorService.submit(task1);
+          executorService.submit(task2);
+          executorService.submit(task3);
+
+          //executorService 会一直监听新的任务（即阻塞线程），直到关闭他为止
+          executorService.shutdown();
+      }
+  }
+  ```
+
+- 线程池 
+  - 简介：与 `Runnable` 或 `Callable` 任务分开存在的一堆工作线程，由 `executorService` 管理
+  - 机制：任务通过 `Blocking Queue` 提交到线程池
+    - 如果任务的数量大过活动线程数量，则会将他插入 `Blocking Queue` 中，一直等到有可用线程为止
+    - 如果 `Blocking Queue` 已满，则拒绝新任务
+  - Code 
+    - [ScheduledExecutorsExample.java](code/java/src/cn/todev/examples/concurrency/ScheduledExecutorsExample.java)
+    - [ScheduledExecutorsPeriodicExample.java](code/java/src/cn/todev/examples/concurrency/ScheduledExecutorsPeriodicExample.java)
+
+- `Callable` 与 `Future`
+  - 方法
+    - `cancel()`: 尝试取消执行任务，如果成功取消则返回true，否则返回false
+    - `cancel(boolean mayInterruptIfRunning)`: 当 mayInterruptIfRunning 为 true 时，则当前正在执行任务的线程将被中断，否则将允许正在进行的任务完成
+    - `isCancelled`: 任务是否被取消
+    - `isDone`: 任务是否已完成
+  - Code - [FutureAndCallableExample.java](code/java/src/cn/todev/examples/concurrency/FutureAndCallableExample.java)
 
 ## Android
 
