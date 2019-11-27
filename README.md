@@ -394,6 +394,14 @@ public static void quickSort(int[] arr, int head, int tail) {
     - bindService
       > `bindService()`、`onCreate()` 、`IBinder onBind(Intent intent)`、`unBindService()`、`onDestroy()`
   - BroadcastReceiver
+    - 作用：从 Android 系统和其他 Android 应用程序发送或接收广播消息
+    - 注册方式：静态/动态
+    - 类型
+      - 普通广播 `Normal Broadcast`
+      - 系统广播 `System Broadcast`
+      - 有序广播 `Ordered Broadcast`
+      - 粘性广播 `Sticky Broadcast`
+      - 应用内广播 `Local Broadcast`
   - Content Provider
 
 - 布局
