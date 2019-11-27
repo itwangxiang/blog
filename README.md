@@ -13,6 +13,7 @@
   - [原理篇](#原理篇)
   - [核心篇](#核心篇)
   - [开源篇](#开源篇)
+  - [蓝牙篇](#蓝牙篇)
 - [Go](#Go)
   - [交叉编译](#交叉编译)
 - [VPS](#VPS)
@@ -545,6 +546,96 @@ public static void quickSort(int[] arr, int head, int tail) {
 - 批量渠道打包 
     
     - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
+
+### 蓝牙篇
+
+#### 低功耗蓝牙 `Bluetooth Low Energy` - [官网](https://developer.android.com/guide/topics/connectivity/bluetooth-le)
+- 关键术语和概念
+  - 通用属性配置文件 `Generic Attribute Profile` (GATT) - GATT 配置文件是一种通用规范，内容针对在 BLE 链路上发送和接收称为“属性”的简短数据片段
+  - 属性协议 `Attribute Protocol ` (ATT) — 属性协议 (ATT) 是 GATT 的构建基础，二者的关系也被称为 GATT/ATT
+  - 特征 `Characteristic` — 特征包含一个值和 0 至 n 个描述特征值的描述符
+  - 描述符 `Descriptor` — 描述符是描述特征值的已定义属性
+  - 服务 `Service` - 服务是一系列特征
+- 使用流程
+  - 设置 `BLE`
+    - 获取 `BluetoothAdapter`
+    - 启用蓝牙
+    ```kotlin
+    val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
+    ```
+  - 查找 `BLE` 设备
+    - 方法
+      - `startLeScan(BluetoothAdapter.LeScanCallback)` - 查找 BLE 设备
+      - `startLeScan(UUID[], BluetoothAdapter.LeScanCallback)` - 扫描特定类型的外围设备
+    - 注意事项(由于扫描非常耗电)
+      - 找到所需设备后，立即停止扫描
+      - 绝对不进行循环扫描，并设置扫描时间限制
+    - Code
+    ```kotlin
+    private var mScanning: Boolean = false
+
+    //返回扫描结果
+    private val leScanCallback = BluetoothAdapter.LeScanCallback { device, rssi, scanRecord ->
+        runOnUiThread {
+            //todo
+        }
+    }
+
+    //在预定义的扫描时间段后停止扫描
+    handler.postDelayed({
+        mScanning = false
+        bluetoothAdapter.stopLeScan(leScanCallback)
+    }, 10000)
+    mScanning = true
+    bluetoothAdapter.startLeScan(leScanCallback)
+    ```
+  - 连接 GATT 服务器
+    - 方法 `BluetoothGatt connectGatt (Context context, boolean autoConnect, BluetoothGattCallback callback)`
+    - Code
+    ```kotlin
+    private val gattCallback = object : BluetoothGattCallback() {
+        override fun onConnectionStateChange(
+                gatt: BluetoothGatt,
+                status: Int,
+                newState: Int
+        ) {
+
+        }
+
+        // New services discovered
+        override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
+            when (status) {
+                BluetoothGatt.GATT_SUCCESS -> broadcastUpdate(ACTION_GATT_SERVICES_DISCOVERED)
+                else -> Log.w(TAG, "onServicesDiscovered received: $status")
+            }
+        }
+
+        // Result of a characteristic read operation
+        override fun onCharacteristicRead(
+                gatt: BluetoothGatt,
+                characteristic: BluetoothGattCharacteristic,
+                status: Int
+        ) {
+            when (status) {
+                    BluetoothGatt.GATT_SUCCESS -> {
+                        broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic)
+                    }
+            }
+        }
+
+        // Characteristic notification
+        override fun onCharacteristicChanged(
+                gatt: BluetoothGatt,
+                characteristic: BluetoothGattCharacteristic
+        ) {
+            broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic)
+        }
+    }
+    ```
+  - 读取 BLE 属性
+  - 接收 GATT 通知 - `setCharacteristicNotification()`
+  - 关闭客户端应用 - `close()`
 
 
 ## Go
