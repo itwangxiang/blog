@@ -2,13 +2,13 @@
 
 ## Catalog
 
-- [Basic](#Basic) - [思维导图](mind/Basic.mindnode/QuickLook/Preview.jpg)
+- [Basic](#Basic) - [思维导图](mind/Basic.pdf)
   - [算法](#算法)
   - [设计模式](#设计模式)
-- [Java](#Java) - [思维导图](mind/Java.mindnode/QuickLook/Preview.jpg)
+- [Java](#Java) - [思维导图](mind/Java.pdf)
   - [集合](#集合)
   - [并发](#并发)
-- [Android](#Android) - [思维导图](mind/Android.mindnode/QuickLook/Preview.jpg)
+- [Android](#Android) - [思维导图](mind/Android.pdf)
   - [基础篇](#基础篇)
   - [原理篇](#原理篇)
   - [核心篇](#核心篇)
