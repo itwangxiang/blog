@@ -2,13 +2,13 @@
 
 ## Catalog
 
-- [基础](#基础)
+- [Basic](#Basic) - [思维导图](mind/Basic.md)
   - [算法](#算法)
   - [设计模式](#设计模式)
-- [Java](#Java)
+- [Java](#Java) - [思维导图](mind/Java.md)
   - [集合](#集合)
   - [并发](#并发)
-- [Android](#Android)
+- [Android](#Android) - [思维导图](mind/Android.md)
   - [基础篇](#基础篇)
   - [原理篇](#原理篇)
   - [核心篇](#核心篇)
@@ -33,7 +33,7 @@
 
 ---
 
-## 基础
+## Basic
 
 ### 算法
 
@@ -371,6 +371,14 @@ public static void quickSort(int[] arr, int head, int tail) {
     - `isDone`: 任务是否已完成
   - Code - [FutureAndCallableExample.java](code/java/src/cn/todev/examples/concurrency/FutureAndCallableExample.java)
 
+#### 死锁/活锁/饥饿锁 乐观锁/悲观锁
+
+- 死锁 - 其中两个或多个线程永远被阻塞，互相等待
+- 活锁 - 其中两个线程一直在让资源，都无法使用资源
+- 饥饿锁 - 其他线程一直占用资源，导致永远获取不到资源
+- 乐观锁 - 假设不会发生并发冲突，只在提交操作时检查是否违反数据完整性
+- 悲观锁 - 假定会发生并发冲突，屏蔽一切可能违反数据完整性的操作
+
 ## Android
 
 ### 系统架构图
@@ -418,6 +426,11 @@ public static void quickSort(int[] arr, int head, int tail) {
   - BroadcastReceiver，LocalBroadcastReceiver 的区别
 
 ### 原理篇
+
+- View 绘制
+  - measure
+  - layout
+  - draw
 
 - Touch 事件传递机制
 
