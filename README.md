@@ -470,9 +470,6 @@ public static void quickSort(int[] arr, int head, int tail) {
 - OOM 是什么？以及如何避免？
 - 内存泄漏和内存溢出区别？
 - 为什么不能在子线程更新 UI
-- 线程池
-  - `参考资料`
-    - [Android 线程池原理及使用](https://www.jianshu.com/p/7b2da1d94b42)
 
 ### 优化篇
 
