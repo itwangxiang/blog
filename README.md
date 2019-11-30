@@ -111,7 +111,9 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 ### 设计模式
 
-[todo](https://github.com/itwangxiang/docs/issues/1)
+- 相关书籍
+  - [HeadFirst_设计模式.pdf](asset/book/HeadFirst_设计模式.pdf)
+  - [设计模式_可复用面向对象软件的基础.pdf](asset/book/设计模式_可复用面向对象软件的基础.pdf)
 
 #### 创建型
 
