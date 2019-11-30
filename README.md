@@ -480,8 +480,13 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 - View 绘制
   - measure
+    - MeasureSpec
+      - `UNSPECIFIED` - 未明确模式
+      - `EXACTLY` - 精确模式
+      - `AT_MOST` - 最多模式
   - layout
   - draw
+    - `onDraw(Canvas canvas)`
 
 - Touch 事件传递机制
 
@@ -738,6 +743,24 @@ go build main.go
 
 
 ## VPS
+
+### Mac
+
+#### 用户环境变量
+  - vim 编辑
+    ```bash
+    vim ~/.bash_profile
+    ```
+  - export 赋值
+    ```bash
+    export ANDROID_HOME=/Volumes/Work/Library/Android/SDK
+    export PATH=${PATH}:${ANDROID_HOME}/tools
+    export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+    ```
+  - source 刷新生效
+    ```bash
+    source .bash_profile
+    ```  
 
 ### Linux
 
