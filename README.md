@@ -22,6 +22,7 @@
   - [Centos](#centos)
   - [Nginx](#nginx)
 - [Tool](#Tool)
+  - [Google 搜索技巧](#Google-搜索技巧)
   - [Mysql](#Mysql)
   - [Git](#git)
     - [设置 Git 代理](#设置-Git-代理)
@@ -786,9 +787,7 @@ go build main.go
 
 ## Tool
 
-### Google
-
-#### 搜索技巧
+### Google 搜索技巧
 
 > [Google 搜索帮助文档](https://support.google.com/websearch/answer/2466433)
 
