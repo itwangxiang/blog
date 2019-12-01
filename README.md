@@ -13,7 +13,7 @@
   - [原理篇](#原理篇)
   - [核心篇](#核心篇)
   - [开源篇](#开源篇)
-  - [蓝牙篇](#蓝牙篇)
+  - [外设篇](#外设篇)
 - [Go](#Go)
   - [交叉编译](#交叉编译)
 - [VPS](#VPS)
@@ -616,7 +616,7 @@ public static void quickSort(int[] arr, int head, int tail) {
     
     - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
 
-### 蓝牙篇
+### 外设篇
 
 #### 低功耗蓝牙 `Bluetooth Low Energy` - [官网](https://developer.android.com/guide/topics/connectivity/bluetooth-le)
 - 关键术语和概念
@@ -705,6 +705,62 @@ public static void quickSort(int[] arr, int head, int tail) {
   - 读取 BLE 属性
   - 接收 GATT 通知 - `setCharacteristicNotification()`
   - 关闭客户端应用 - `close()`
+
+### 串口通信
+
+#### [android-serialport-api](https://github.com/cepr/android-serialport-api)
+
+- `SerialPort` - 获取串口的类(其实就是获取输入输出流)
+  - `public SerialPort(File device, int baudrate, int flags)`
+    - 参数
+      - `device` - 要操作的文件对象
+      - `baudrate` - 波特率
+      - `flags` - 文件操作的标志
+    - 流程  
+      - JNI - `FileDescriptor open(String path, int baudrate, int flags)` 
+      - C - `int open(const char * pathname, int flags)`
+        - `pathname` - 指向欲打开的文件路径字符串
+        - `flags` - 文件的打开打开方式: O_RDONLY 以只读方式打开文件O_WRONLY 以只写方式打开文件O_RDWR 以可读写方式打开文件
+        - `return` 若所有欲核查的权限都通过了检查则返回0 值, 表示成功, 只要有一个权限被禁止则返回-1
+  - 读数据 - `getInputStream()`
+    ```java
+    class ReadThread extends Thread {
+        @Override
+        public void run() {
+            super.run();
+            while(!isInterrupted()) {
+                int size;
+                try {
+                    byte[] buffer = new byte[64];
+                    if (getInputStream() == null) return;
+                    size = getInputStream().read(buffer);
+                    if (size > 0) {
+                        onDataReceived(buffer, size);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    return;
+                }
+            }
+        }
+    }
+    ``` 
+  - 写数据 - `getOutputStream()`
+    ```java
+    String commandStr = "";
+    FileOutputStream mOutputStream = getOutputStream();
+    byte[] text = StringUtils.hexStringToBytes(commandStr);
+    try {
+        mOutputStream.write(text);
+        mOutputStream.flush();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    ```     
+- `SerialPortFinder` - 获取硬件地址的类
+- 常见问题
+  - 包名 - `android_serialport_api`
+  - 写入权限时，`/system/xbin/su` or `/system/bin/su`
 
 
 ## Go
