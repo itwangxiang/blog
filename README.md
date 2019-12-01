@@ -14,6 +14,8 @@
   - [核心篇](#核心篇)
   - [开源篇](#开源篇)
   - [外设篇](#外设篇)
+    - [低功耗蓝牙](#低功耗蓝牙(Bluetooth-Low-Energy))
+    - [串口通信](#串口通信)
 - [Go](#Go)
   - [交叉编译](#交叉编译)
 - [VPS](#VPS)
@@ -618,7 +620,7 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 ### 外设篇
 
-#### 低功耗蓝牙 `Bluetooth Low Energy` - [官网](https://developer.android.com/guide/topics/connectivity/bluetooth-le)
+#### [低功耗蓝牙(Bluetooth Low Energy)](https://developer.android.com/guide/topics/connectivity/bluetooth-le)
 - 关键术语和概念
   - 通用属性配置文件 `Generic Attribute Profile` (GATT) - GATT 配置文件是一种通用规范，内容针对在 BLE 链路上发送和接收称为“属性”的简短数据片段
   - 属性协议 `Attribute Protocol ` (ATT) — 属性协议 (ATT) 是 GATT 的构建基础，二者的关系也被称为 GATT/ATT
