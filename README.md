@@ -761,6 +761,7 @@ public static void quickSort(int[] arr, int head, int tail) {
 - 常见问题
   - 包名 - `android_serialport_api`
   - 写入权限时，`/system/xbin/su` or `/system/bin/su`
+  - 设备需要 Root 权限
 
 
 ## Go
