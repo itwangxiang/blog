@@ -518,15 +518,24 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 - `Handler`
 
-  - 流程
+  - `post` 流程
     - 等待消息：Looper.loop();
     - 消息入队：
       1. Handler.sendMessage(msg)
       2. Looper.MessageQueue.enqueueMessage(msg)
     - 处理消息：Looper.loop();
+      1. 循环 MessageQueue.next()
+      2. 调用 `msg.target.dispatchMessage(msg)`
     - 消息出队：
       1. Handler.dispatchMessage(msg)
       2. Handler.handleMessage(msg)
+  - `postDelayed` 流程
+    - 消息是通过 `MessageQueen` 中的 `enqueueMessage`()方法加入消息队列中的，并且它在放入中就进行好排序，链表头的延迟时间小，尾部延迟时间最大
+    - `Looper.loop()` 通过 `MessageQueue` 中的 `next()` 去取消息
+    - `next()` 中如果当前链表头部消息是延迟消息，则根据延迟时间进行消息队列会阻塞，不返回给 `Looper message`，知道时间到了，返回给 `message`
+    - 如果在阻塞中有新的消息插入到链表头部则唤醒线程
+    - `Looper` 将新消息交给回调给 `handler` 中的 `handleMessage` 后，继续调用 `MessageQueen` 的 `next()` 方法，如果刚刚的延迟消息还是时间未到，则计算时间继续阻塞
+
 
 - `AsyncTask` [Doc](https://developer.android.com/reference/android/os/AsyncTask)
 
