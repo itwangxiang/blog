@@ -508,6 +508,86 @@ public static void quickSort(int[] arr, int head, int tail) {
 
   - ViewGroup : `dispatchTouchEvent()` -> `onInterceptTouchEvent() == true` -> `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
   - View : `dispatchTouchEvent()` -> `onTouchListener.onTouch()` -> `onTouchEvent()` -> `onClick`
+  
+- View 滑动冲突
+  - 外部拦截法
+    ```java
+    public boolean onInterceptTouchEvent(MotionEvent event) {
+        boolean intercepted = false;
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN: {
+                intercepted = false;
+                break;
+            }
+            case MotionEvent.ACTION_MOVE: {
+                if (满足父容器的拦截要求) {
+                    intercepted = true;
+                } else {
+                    intercepted = false;
+                }
+                break;
+            }
+            case MotionEvent.ACTION_UP: {
+                intercepted = false;
+                break;
+            }
+            default:
+                break;
+        }
+        mLastXIntercept = x;
+        mLastYIntercept = y;
+        return intercepted;
+    }
+    ```
+  - 内部拦截法
+    - 示例
+      - 子 View
+        ```java
+        public boolean dispatchTouchEvent(MotionEvent event) {
+            int x = (int) event.getX();
+            int y = (int) event.getY();
+
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    parent.requestDisallowInterceptTouchEvent(true);
+                    break;
+                }
+                case MotionEvent.ACTION_MOVE: {
+                    int deltaX = x - mLastX;
+                    int deltaY = y - mLastY;
+                    if (父容器需要此类点击事件) {
+                        parent.requestDisallowInterceptTouchEvent(false);
+                    }
+                    break;
+                }
+                case MotionEvent.ACTION_UP: {
+                    break;
+                }
+                default:
+                    break;
+            }
+
+            mLastX = x;
+            mLastY = y;
+            return super.dispatchTouchEvent(event);
+        }
+        ```
+      - 父 View
+        ```java
+        public boolean onInterceptTouchEvent(MotionEvent event) {
+            int action = event.getAction();
+            if (action == MotionEvent.ACTION_DOWN) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+        ```
+    - 注意点：
+      - 内部拦截法要求父View不能拦截ACTION_DOWN事件，由于ACTION_DOWN不受FLAG_DISALLOW_INTERCEPT标志位控制，一旦父容器拦截ACTION_DOWN那么所有的事件都不会传递给子View。
+      - 滑动策略的逻辑放在子View的dispatchTouchEvent方法的ACTION_MOVE中，如果父容器需要获取点击事件则调用 parent.requestDisallowInterceptTouchEvent(false)方法，让父容器去拦截事件。    
 
 - 屏幕刷新机制
 
