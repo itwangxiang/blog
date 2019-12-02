@@ -476,6 +476,17 @@ public static void quickSort(int[] arr, int head, int tail) {
   - FrameLayout
   - TableLayout
 
+- View
+  - `SurfaceView`
+    - 双缓冲机制
+    - 子线程绘制
+  - `TextureView`  
+    - TextureView可用于显示内容流。
+    - 例如，这样的内容流可以是视频或OpenGL场景。
+    - 内容流可以来自应用程序的进程，也可以来自远程进程
+  - `VideoView`
+  - `WebView`
+
 - 其他
   - AlertDialog,popupWindow,Activity 的区别
   - Application 和 Activity 的 Context 对象的区别
@@ -617,6 +628,50 @@ public static void quickSort(int[] arr, int head, int tail) {
 - 批量渠道打包 
     
     - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
+
+### 视频篇
+
+#### 关键术语和概念
+
+- `视频` - 泛指将一系列的静态影像以电信号方式加以捕捉、纪录、处理、存储、发送与重现的各种技术 
+- `帧率` - 用于测量显示帧数的量度
+  - 单位：
+    - FPS（每秒显示帧数） - 一般来说 FPS 用于描述影片、电子绘图或游戏每秒播放多少帧
+    - Hz（赫兹） - 每一秒周期性事件发生的次数
+  - 视觉暂留 - 如果所看画面之帧率高于每秒约10至12帧的时候，就会认为是连贯的
+- `长宽比` - 是用来描述影音画面与画面元素的比例
+  - 常见的比例 - 4:3 / 16:9
+- `封装格式` - 压缩过的视频数据和音频数据打包成一个文件的规范
+  - AVI、RMVB、MKV、ASF、WMV、MP4、3GP、FLV
+- `编解码`
+  - 编码 - 对视频进行压缩
+    - 视频编码格式 - `H264`、`Xvid`
+    - 音频编码格式 - `MP3`、`AAC`
+  - 解码 - 对视频进行解压缩
+- `音画同步`
+  - 将视频同步到音频上
+  - 将音频同步到视频上
+  - 将视频和音频同步外部的时钟上  
+- `RTC` - 实时通信
+  - 采集
+  - 前处理
+  - 编码
+  - 传输
+  - 解码
+  - 后处理
+  - 缓冲
+  - 渲染
+
+#### 解码
+
+- 硬解 - 硬件解码是图形芯片厂商提出的用GPU资源解码视频流的方案
+  - `MediaPlayer`
+    - 代表播放器 - Android 自带的 [VideoView](https://developer.android.com/reference/android/widget/VideoView)
+  - `MediaCodec`
+    - 代表播放器 - Google 的 [ExoPlayer](https://github.com/google/ExoPlayer)
+- 软解 - 相对于硬件解码，传统的软件解码是用CPU承担解码工作
+  - `FFmpeg`
+    - 代表播放器 - Bilibili 的 [ijkplayer](https://github.com/Bilibili/ijkplayer)
 
 ### 外设篇
 
