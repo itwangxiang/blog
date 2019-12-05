@@ -589,13 +589,6 @@ public static void quickSort(int[] arr, int head, int tail) {
       - 内部拦截法要求父View不能拦截ACTION_DOWN事件，由于ACTION_DOWN不受FLAG_DISALLOW_INTERCEPT标志位控制，一旦父容器拦截ACTION_DOWN那么所有的事件都不会传递给子View。
       - 滑动策略的逻辑放在子View的dispatchTouchEvent方法的ACTION_MOVE中，如果父容器需要获取点击事件则调用 parent.requestDisallowInterceptTouchEvent(false)方法，让父容器去拦截事件。    
 
-- 屏幕刷新机制
-
-  - Android 应用程序调用 SurfaceFlinger 服务把经过测量、布局和绘制后的 Surface 渲染到显示屏幕上
-
-  - `参考资料`
-    - [Android 显示原理简介](http://djt.qq.com/article/view/987)
-
 - `Handler`
 
   - `post` 流程
@@ -630,6 +623,26 @@ public static void quickSort(int[] arr, int head, int tail) {
   3. 紧接着，应用程序的 Main Looper 被创建，ActivityThread 被实例化成为对象并将 Application 的信息以进程间通信的方式再次回馈给 AMS。
   4. AMS 接收到客户端发来的请求数据之后，首先将应用程序绑定，并启动应用程序的 Activity，开始执行 Activity 的生命周期
 
+- `内存泄露`
+  - 场景
+    - 单例
+    - 匿名内部类
+    - Context
+    - Handler
+    - Cursor，Stream
+    - WebView
+  - 排查工具
+    - dumpsys
+      ```bash
+      adb shell dumpsys meminfo <packageName>
+      ```
+    - LeakCanary
+
+- `内存溢出 - OOM`
+  - 原因
+    - 内存泄露
+    - 内存占用过多的对象
+
 - `ThreadLocal`
 - `LruCache` 缓存策略
 
@@ -639,6 +652,13 @@ public static void quickSort(int[] arr, int head, int tail) {
     - `LruCache` 中维护了一个 `LinkedHashMap` 集合并将其设置顺序排序。
     - 当调用 `put()` 方法时，就会在集合中添加元素，并调用 `trimToSize()` 判断缓存是否已满，如果满了就用 `LinkedHashMap` 的迭代器删除队尾元素，即近期最少访问的元素。
     - 当调用 `get()` 方法访问缓存对象时，就会调用 `LinkedHashMap` 的 `get()` 方法获得对应集合元素，同时会更新该元素到队头
+
+- 屏幕刷新机制
+
+  - Android 应用程序调用 SurfaceFlinger 服务把经过测量、布局和绘制后的 Surface 渲染到显示屏幕上
+
+  - `参考资料`
+    - [Android 显示原理简介](http://djt.qq.com/article/view/987)
 
 - ANR 产生的原因，以及如何定位和修正
 - OOM 是什么？以及如何避免？
