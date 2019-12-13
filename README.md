@@ -19,6 +19,8 @@
 - [Go](#Go)
   - [交叉编译](#交叉编译)
 - [VPS](#VPS)
+  - [Mac](#Mac)
+    - [用户环境变量](#用户环境变量)
   - [Linux](#Linux)
   - [Ubuntu](#ubuntu)
   - [Centos](#centos)
@@ -128,14 +130,12 @@ public static void quickSort(int[] arr, int head, int tail) {
   - Java 中用例
     - [java.util.Calendar](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
 
-
 - 建造者模式 `Builder Pattern`
 - 单例模式 `Singleton Pattern`
 
 #### 结构型
 
 #### 行为型
-
 
 ## Java
 
@@ -210,13 +210,13 @@ public static void quickSort(int[] arr, int head, int tail) {
     - 特点：基于链表的无界队列
   - SynchronousQueue
     - 特点：有界队列
-- `Map`   
+- `Map`
   - ConcurrentHashMap
-  - ConcurrentSkipListMap 
+  - ConcurrentSkipListMap
     - `并发有序`  
 - `Set`  
   - ConcurrentSkipListSet
-  - CopyOnWriteArraySet   
+  - CopyOnWriteArraySet
 
 ### 并发
 
@@ -224,6 +224,7 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 - 创建
   - 继承 `Thread` 并重写 `run()` 方法 - [ThreadExample.java](code/java/src/cn/todev/examples/concurrency/ThreadExample.java)
+
   ```java
   public class ThreadExample extends Thread {
 
@@ -244,7 +245,9 @@ public static void quickSort(int[] arr, int head, int tail) {
     }
   }
   ```
+
   - 实现 `Runnable` 接口 - [RunnableExample.java](code/java/src/cn/todev/examples/concurrency/RunnableExample.java)  
+
   ```java
   public class RunnableExample implements Runnable {
 
@@ -267,7 +270,9 @@ public static void quickSort(int[] arr, int head, int tail) {
     }
   }
   ```  
+
   - 内部类实现 - [RunnableExampleAnonymousClass.java](code/java/src/cn/todev/examples/concurrency/RunnableExampleAnonymousClass.java)  
+
   ```java
   public class RunnableExampleAnonymousClass {
 
@@ -290,6 +295,7 @@ public static void quickSort(int[] arr, int head, int tail) {
     }
   }
   ```
+
 - 休眠
   - 使用 `sleep()`
 - 等待
@@ -307,7 +313,8 @@ public static void quickSort(int[] arr, int head, int tail) {
     - `submit` - 提交任务
     - `shutdown()` - 停止接受新任务，等待先前提交的任务执行，然后终止执行程序
     - `shutdownNow()` - 中断正在运行的任务并立即关闭执行程序
-  - Code - - [ExecutorsExample.java](code/java/src/cn/todev/examples/concurrency/ExecutorsExample.java) 
+  - Code - - [ExecutorsExample.java](code/java/src/cn/todev/examples/concurrency/ExecutorsExample.java)
+
   ```java
   import java.util.concurrent.ExecutorService;
   import java.util.concurrent.Executors;
@@ -393,6 +400,7 @@ public static void quickSort(int[] arr, int head, int tail) {
     - `await(long timeout, TimeUnit unit)`
     - `countDown()`
   - Code
+
     ```java
     private static int LATCH_SIZE = 5;
     private static CountDownLatch doneSignal;
@@ -428,6 +436,7 @@ public static void quickSort(int[] arr, int head, int tail) {
         }
     }
     ```
+
 - Semaphore - 信号量
   - 方法
     - `acquire()`
@@ -511,6 +520,7 @@ public static void quickSort(int[] arr, int head, int tail) {
   
 - View 滑动冲突
   - 外部拦截法
+
     ```java
     public boolean onInterceptTouchEvent(MotionEvent event) {
         boolean intercepted = false;
@@ -541,9 +551,11 @@ public static void quickSort(int[] arr, int head, int tail) {
         return intercepted;
     }
     ```
+
   - 内部拦截法
     - 示例
       - 子 View
+
         ```java
         public boolean dispatchTouchEvent(MotionEvent event) {
             int x = (int) event.getX();
@@ -574,7 +586,9 @@ public static void quickSort(int[] arr, int head, int tail) {
             return super.dispatchTouchEvent(event);
         }
         ```
+
       - 父 View
+
         ```java
         public boolean onInterceptTouchEvent(MotionEvent event) {
             int action = event.getAction();
@@ -585,9 +599,10 @@ public static void quickSort(int[] arr, int head, int tail) {
             }
         }
         ```
+
     - 注意点：
       - 内部拦截法要求父View不能拦截ACTION_DOWN事件，由于ACTION_DOWN不受FLAG_DISALLOW_INTERCEPT标志位控制，一旦父容器拦截ACTION_DOWN那么所有的事件都不会传递给子View。
-      - 滑动策略的逻辑放在子View的dispatchTouchEvent方法的ACTION_MOVE中，如果父容器需要获取点击事件则调用 parent.requestDisallowInterceptTouchEvent(false)方法，让父容器去拦截事件。    
+      - 滑动策略的逻辑放在子View的dispatchTouchEvent方法的ACTION_MOVE中，如果父容器需要获取点击事件则调用 parent.requestDisallowInterceptTouchEvent(false)方法，让父容器去拦截事件。
 
 - `Handler`
 
@@ -608,7 +623,6 @@ public static void quickSort(int[] arr, int head, int tail) {
     - `next()` 中如果当前链表头部消息是延迟消息，则根据延迟时间进行消息队列会阻塞，不返回给 `Looper message`，知道时间到了，返回给 `message`
     - 如果在阻塞中有新的消息插入到链表头部则唤醒线程
     - `Looper` 将新消息交给回调给 `handler` 中的 `handleMessage` 后，继续调用 `MessageQueen` 的 `next()` 方法，如果刚刚的延迟消息还是时间未到，则计算时间继续阻塞
-
 
 - `AsyncTask` [Doc](https://developer.android.com/reference/android/os/AsyncTask)
 
@@ -633,9 +647,11 @@ public static void quickSort(int[] arr, int head, int tail) {
     - WebView
   - 排查工具
     - dumpsys
+
       ```bash
       adb shell dumpsys meminfo <packageName>
       ```
+
     - LeakCanary
 
 - `内存溢出 - OOM`
@@ -734,11 +750,9 @@ public static void quickSort(int[] arr, int head, int tail) {
 
   > 适用于 Android 和 Java 的事件总线，可简化 Activities, Fragments, Threads, Services 等之间的通信。减少代码，提高质量
 
-- 批量渠道打包 
-    
-    - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
+- 批量渠道打包
 
-### 视频篇
+  - [AndroidMultiChannelBuildTool](https://github.com/GavinCT/AndroidMultiChannelBuildTool)
 
 #### 关键术语和概念
 
@@ -966,27 +980,35 @@ SET GOARCH=amd64
 go build main.go
 ```
 
-
-
 ## VPS
 
 ### Mac
 
 #### 用户环境变量
-  - vim 编辑
-    ```bash
-    vim ~/.bash_profile
-    ```
-  - export 赋值
-    ```bash
-    export ANDROID_HOME=/Volumes/Work/Library/Android/SDK
-    export PATH=${PATH}:${ANDROID_HOME}/tools
-    export PATH=${PATH}:${ANDROID_HOME}/platform-tools
-    ```
-  - source 刷新生效
-    ```bash
-    source .bash_profile
-    ```  
+
+- bash
+
+```bash
+vim ~/.bash_profile
+
+export ANDROID_HOME=/Users/xxx/Library/Android/sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+source .bash_profile
+```
+
+- zsh
+
+```bash
+vim ~/.zshrc
+
+export ANDROID_HOME=/Users/xxx/Library/Android/sdk
+export PATH=${PATH}:${ANDROID_HOME}/tools
+export PATH=${PATH}:${ANDROID_HOME}/platform-tools
+
+source .zshrc
+```  
 
 ### Linux
 
