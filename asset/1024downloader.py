@@ -75,9 +75,10 @@ if __name__ == "__main__":
     for article_key in dataJson:
         article = dataJson[article_key]
         article_title = article['title']
-        print(u'帖子 - %s - %d 张' % (article_title, len(article['img_urls'])))
+        article_imgs = article['imgs']
+        print(u'帖子 - %s - %d 张' % (article_title, len(article_imgs)))
 
-        for img_url in article['img_urls']:
+        for img_url in article_imgs:
             task = {
                 'url': img_url,
                 'path': article_title
@@ -89,5 +90,5 @@ if __name__ == "__main__":
         if r != '':
             print('文件 %s 下载成功' % r)
     
-    pass
+    input('下载完成:\n')
 
