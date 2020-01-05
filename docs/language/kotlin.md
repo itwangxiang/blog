@@ -1,5 +1,13 @@
 # Kotlin
 
+> 官方文档 - [en](https://kotlinlang.org/docs/reference/) / [zh-cn](https://www.kotlincn.net/docs/reference/)
+> 惯用语法 - [en](https://kotlinlang.org/docs/reference/idioms.html) / [zh-cn](https://www.kotlincn.net/docs/reference/idioms.html)
+
+## 目录
+
+- [基础](#基础)
+  - [语法](#语法)
+
 ## 基础
 
 ### 语法
@@ -225,3 +233,315 @@
   ```kotlin
   val rectangle = Rectangle(5.0, 2.0)
   ```
+
+### 习惯用法
+
+#### 函数的默认参数
+
+```kotlin
+fun foo(a: Int = 0, b: String = "") { …… }
+```
+
+#### 过滤 list
+
+```kotlin
+val positives = list.filter { x -> x > 0 }
+```
+
+或者可以更短:
+
+```kotlin
+val positives = list.filter { it > 0 }
+```
+
+#### 检测元素是否存在于集合中
+
+```kotlin
+if ("john@example.com" in emailsList) { …… }
+
+if ("jane@example.com" !in emailsList) { …… }
+```
+
+#### 字符串内插
+
+```kotlin
+println("Name $name")
+```
+
+#### 类型判断
+
+```kotlin
+when (x) {
+    is Foo //-> ……
+    is Bar //-> ……
+    else   //-> ……
+}
+```
+
+#### 遍历 map/pair型list
+
+```kotlin
+for ((k, v) in map) {
+    println("$k -> $v")
+}
+```
+
+`k`、`v` 可以改成任意名字。
+
+#### 使用区间
+
+```kotlin
+for (i in 1..100) { …… }  // 闭区间：包含 100
+for (i in 1 until 100) { …… } // 半开区间：不包含 100
+for (x in 2..10 step 2) { …… }
+for (x in 10 downTo 1) { …… }
+if (x in 1..10) { …… }
+```
+
+#### 只读 list
+
+```kotlin
+val list = listOf("a", "b", "c")
+```
+
+#### 只读 map
+
+```kotlin
+val map = mapOf("a" to 1, "b" to 2, "c" to 3)
+```
+
+#### 访问 map
+
+```kotlin
+println(map["key"])
+map["key"] = value
+```
+
+#### 延迟属性
+
+```kotlin
+val p: String by lazy {
+    // 计算该字符串
+}
+```
+
+#### 扩展函数
+
+```kotlin
+fun String.spaceToCamelCase() { …… }
+
+"Convert this to camelcase".spaceToCamelCase()
+```
+
+#### 创建单例
+
+```kotlin
+object Resource {
+    val name = "Name"
+}
+```
+
+#### If not null 缩写
+
+```kotlin
+val files = File("Test").listFiles()
+
+println(files?.size)
+```
+
+#### If not null and else 缩写
+
+```kotlin
+val files = File("Test").listFiles()
+
+println(files?.size ?: "empty")
+```
+
+#### if null 执行一个语句
+
+```kotlin
+val values = ……
+val email = values["email"] ?: throw IllegalStateException("Email is missing!")
+```
+
+#### 在可能会空的集合中取第一元素
+
+```kotlin
+val emails = …… // 可能会是空集合
+val mainEmail = emails.firstOrNull() ?: ""
+```
+
+#### if not null 执行代码
+
+```kotlin
+val value = ……
+
+value?.let {
+    …… // 代码会执行到此处, 假如data不为null
+}
+```
+
+#### 映射可空值（如果非空的话）
+
+```kotlin
+val value = ……
+
+val mapped = value?.let { transformValue(it) } ?: defaultValue
+// 如果该值或其转换结果为空，那么返回 defaultValue。
+```
+
+#### 返回 when 表达式
+
+```kotlin
+fun transform(color: String): Int {
+    return when (color) {
+        "Red" -> 0
+        "Green" -> 1
+        "Blue" -> 2
+        else -> throw IllegalArgumentException("Invalid color param value")
+    }
+}
+```
+
+#### “try/catch”表达式
+
+```kotlin
+fun test() {
+    val result = try {
+        count()
+    } catch (e: ArithmeticException) {
+        throw IllegalStateException(e)
+    }
+
+    // 使用 result
+}
+```
+
+#### “if”表达式
+
+```kotlin
+fun foo(param: Int) {
+    val result = if (param == 1) {
+        "one"
+    } else if (param == 2) {
+        "two"
+    } else {
+        "three"
+    }
+}
+```
+
+#### 返回类型为 `Unit` 的方法的 Builder 风格用法
+
+```kotlin
+fun arrayOfMinusOnes(size: Int): IntArray {
+    return IntArray(size).apply { fill(-1) }
+}
+```
+
+#### 单表达式函数
+
+```kotlin
+fun theAnswer() = 42
+```
+
+等价于
+
+```kotlin
+fun theAnswer(): Int {
+    return 42
+}
+```
+
+单表达式函数与其它惯用法一起使用能简化代码，例如和 *when*{: .keyword } 表达式一起使用：
+
+```kotlin
+fun transform(color: String): Int = when (color) {
+    "Red" -> 0
+    "Green" -> 1
+    "Blue" -> 2
+    else -> throw IllegalArgumentException("Invalid color param value")
+}
+```
+
+#### 对一个对象实例调用多个方法 （`with`）
+
+```kotlin
+class Turtle {
+    fun penDown()
+    fun penUp()
+    fun turn(degrees: Double)
+    fun forward(pixels: Double)
+}
+
+val myTurtle = Turtle()
+with(myTurtle) { // 画一个 100 像素的正方形
+    penDown()
+    for(i in 1..4) {
+        forward(100.0)
+        turn(90.0)
+    }
+    penUp()
+}
+```
+
+#### 配置对象的属性（`apply`）
+
+```kotlin
+val myRectangle = Rectangle().apply {
+    length = 4
+    breadth = 5
+    color = 0xFAFAFA
+}
+```
+
+这对于配置未出现在对象构造函数中的属性非常有用。
+
+#### Java 7 的 try with resources
+
+```kotlin
+val stream = Files.newInputStream(Paths.get("/some/file.txt"))
+stream.buffered().reader().use { reader ->
+    println(reader.readText())
+}
+```
+
+#### 对于需要泛型信息的泛型函数的适宜形式
+
+```kotlin
+//  public final class Gson {
+//     ……
+//     public <T> T fromJson(JsonElement json, Class<T> classOfT) throws JsonSyntaxException {
+//     ……
+
+inline fun <reified T: Any> Gson.fromJson(json: JsonElement): T = this.fromJson(json, T::class.java)
+```
+
+#### 使用可空布尔
+
+```kotlin
+val b: Boolean? = ……
+if (b == true) {
+    ……
+} else {
+    // `b` 是 false 或者 null
+}
+```
+
+#### 交换两个变量
+
+```kotlin
+var a = 1
+var b = 2
+a = b.also { b = a }
+```
+
+#### TODO()：将代码标记为不完整
+
+Kotlin 的标准库有一个 `TODO()` 函数，该函数总是抛出一个 `NotImplementedError`。
+其返回类型为 `Nothing`，因此无论预期类型是什么都可以使用它。
+还有一个接受原因参数的重载：
+
+```kotlin
+fun calcTaxes(): BigDecimal = TODO("Waiting for feedback from accounting")
+```
