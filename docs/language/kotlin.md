@@ -6,11 +6,12 @@
 ## 目录
 
 - [基础](#基础)
-  - [语法](#语法)
+  - [基础语法](#基础语法)
+  - [惯用语法](#惯用语法)
 
 ## 基础
 
-### 语法
+### 基础语法
 
 - 包
   
@@ -236,13 +237,13 @@
 
 ### 习惯用法
 
-#### 函数的默认参数
+- 函数的默认参数
 
 ```kotlin
 fun foo(a: Int = 0, b: String = "") { …… }
 ```
 
-#### 过滤 list
+- 过滤 list
 
 ```kotlin
 val positives = list.filter { x -> x > 0 }
@@ -254,7 +255,7 @@ val positives = list.filter { x -> x > 0 }
 val positives = list.filter { it > 0 }
 ```
 
-#### 检测元素是否存在于集合中
+- 检测元素是否存在于集合中
 
 ```kotlin
 if ("john@example.com" in emailsList) { …… }
@@ -262,13 +263,13 @@ if ("john@example.com" in emailsList) { …… }
 if ("jane@example.com" !in emailsList) { …… }
 ```
 
-#### 字符串内插
+- 字符串内插
 
 ```kotlin
 println("Name $name")
 ```
 
-#### 类型判断
+- 类型判断
 
 ```kotlin
 when (x) {
@@ -278,7 +279,7 @@ when (x) {
 }
 ```
 
-#### 遍历 map/pair型list
+- 遍历 map/pair型list
 
 ```kotlin
 for ((k, v) in map) {
@@ -288,7 +289,7 @@ for ((k, v) in map) {
 
 `k`、`v` 可以改成任意名字。
 
-#### 使用区间
+- 使用区间
 
 ```kotlin
 for (i in 1..100) { …… }  // 闭区间：包含 100
@@ -298,26 +299,26 @@ for (x in 10 downTo 1) { …… }
 if (x in 1..10) { …… }
 ```
 
-#### 只读 list
+- 只读 list
 
 ```kotlin
 val list = listOf("a", "b", "c")
 ```
 
-#### 只读 map
+- 只读 map
 
 ```kotlin
 val map = mapOf("a" to 1, "b" to 2, "c" to 3)
 ```
 
-#### 访问 map
+- 访问 map
 
 ```kotlin
 println(map["key"])
 map["key"] = value
 ```
 
-#### 延迟属性
+- 延迟属性
 
 ```kotlin
 val p: String by lazy {
@@ -325,7 +326,7 @@ val p: String by lazy {
 }
 ```
 
-#### 扩展函数
+- 扩展函数
 
 ```kotlin
 fun String.spaceToCamelCase() { …… }
@@ -333,7 +334,7 @@ fun String.spaceToCamelCase() { …… }
 "Convert this to camelcase".spaceToCamelCase()
 ```
 
-#### 创建单例
+- 创建单例
 
 ```kotlin
 object Resource {
@@ -341,7 +342,7 @@ object Resource {
 }
 ```
 
-#### If not null 缩写
+- If not null 缩写
 
 ```kotlin
 val files = File("Test").listFiles()
@@ -349,7 +350,7 @@ val files = File("Test").listFiles()
 println(files?.size)
 ```
 
-#### If not null and else 缩写
+- If not null and else 缩写
 
 ```kotlin
 val files = File("Test").listFiles()
@@ -357,21 +358,21 @@ val files = File("Test").listFiles()
 println(files?.size ?: "empty")
 ```
 
-#### if null 执行一个语句
+- if null 执行一个语句
 
 ```kotlin
 val values = ……
 val email = values["email"] ?: throw IllegalStateException("Email is missing!")
 ```
 
-#### 在可能会空的集合中取第一元素
+- 在可能会空的集合中取第一元素
 
 ```kotlin
 val emails = …… // 可能会是空集合
 val mainEmail = emails.firstOrNull() ?: ""
 ```
 
-#### if not null 执行代码
+- if not null 执行代码
 
 ```kotlin
 val value = ……
@@ -381,7 +382,7 @@ value?.let {
 }
 ```
 
-#### 映射可空值（如果非空的话）
+- 映射可空值（如果非空的话）
 
 ```kotlin
 val value = ……
@@ -390,7 +391,7 @@ val mapped = value?.let { transformValue(it) } ?: defaultValue
 // 如果该值或其转换结果为空，那么返回 defaultValue。
 ```
 
-#### 返回 when 表达式
+- 返回 when 表达式
 
 ```kotlin
 fun transform(color: String): Int {
@@ -403,7 +404,7 @@ fun transform(color: String): Int {
 }
 ```
 
-#### “try/catch”表达式
+- “try/catch”表达式
 
 ```kotlin
 fun test() {
@@ -417,7 +418,7 @@ fun test() {
 }
 ```
 
-#### “if”表达式
+- “if”表达式
 
 ```kotlin
 fun foo(param: Int) {
@@ -431,7 +432,7 @@ fun foo(param: Int) {
 }
 ```
 
-#### 返回类型为 `Unit` 的方法的 Builder 风格用法
+- 返回类型为 `Unit` 的方法的 Builder 风格用法
 
 ```kotlin
 fun arrayOfMinusOnes(size: Int): IntArray {
@@ -439,7 +440,7 @@ fun arrayOfMinusOnes(size: Int): IntArray {
 }
 ```
 
-#### 单表达式函数
+- 单表达式函数
 
 ```kotlin
 fun theAnswer() = 42
@@ -464,7 +465,7 @@ fun transform(color: String): Int = when (color) {
 }
 ```
 
-#### 对一个对象实例调用多个方法 （`with`）
+- 对一个对象实例调用多个方法 （`with`）
 
 ```kotlin
 class Turtle {
@@ -485,7 +486,7 @@ with(myTurtle) { // 画一个 100 像素的正方形
 }
 ```
 
-#### 配置对象的属性（`apply`）
+- 配置对象的属性（`apply`）
 
 ```kotlin
 val myRectangle = Rectangle().apply {
@@ -497,7 +498,7 @@ val myRectangle = Rectangle().apply {
 
 这对于配置未出现在对象构造函数中的属性非常有用。
 
-#### Java 7 的 try with resources
+- Java 7 的 try with resources
 
 ```kotlin
 val stream = Files.newInputStream(Paths.get("/some/file.txt"))
@@ -506,7 +507,7 @@ stream.buffered().reader().use { reader ->
 }
 ```
 
-#### 对于需要泛型信息的泛型函数的适宜形式
+- 对于需要泛型信息的泛型函数的适宜形式
 
 ```kotlin
 //  public final class Gson {
@@ -517,7 +518,7 @@ stream.buffered().reader().use { reader ->
 inline fun <reified T: Any> Gson.fromJson(json: JsonElement): T = this.fromJson(json, T::class.java)
 ```
 
-#### 使用可空布尔
+- 使用可空布尔
 
 ```kotlin
 val b: Boolean? = ……
@@ -528,7 +529,7 @@ if (b == true) {
 }
 ```
 
-#### 交换两个变量
+- 交换两个变量
 
 ```kotlin
 var a = 1
@@ -536,7 +537,7 @@ var b = 2
 a = b.also { b = a }
 ```
 
-#### TODO()：将代码标记为不完整
+- TODO()：将代码标记为不完整
 
 Kotlin 的标准库有一个 `TODO()` 函数，该函数总是抛出一个 `NotImplementedError`。
 其返回类型为 `Nothing`，因此无论预期类型是什么都可以使用它。
