@@ -1,7 +1,7 @@
 # Kotlin
 
 > 官方文档 - [en](https://kotlinlang.org/docs/reference/) / [zh-cn](https://www.kotlincn.net/docs/reference/)
-> 惯用语法 - [en](https://kotlinlang.org/docs/reference/idioms.html) / [zh-cn](https://www.kotlincn.net/docs/reference/idioms.html)
+>> 惯用语法 - [en](https://kotlinlang.org/docs/reference/idioms.html) / [zh-cn](https://www.kotlincn.net/docs/reference/idioms.html)
 
 ## 目录
 
@@ -235,7 +235,7 @@
   val rectangle = Rectangle(5.0, 2.0)
   ```
 
-### 习惯用法
+### 惯用语法
 
 - 函数的默认参数
 
