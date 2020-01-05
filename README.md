@@ -166,15 +166,15 @@ public static void quickSort(int[] arr, int head, int tail) {
   - LinkedHashMap
     - 数据结构： `基于链表和哈希表`
     - 特点：存取有序
-  - EnumMap: 
+  - EnumMap:
     - 特点：枚举类型作为键值的Map
-  - IdentityHashMap: 
+  - IdentityHashMap:
     - 特点：使用 “==” 来比较引用
-  - WeakHashMap: 
+  - WeakHashMap:
     - 特点：将键存储在 WeakReference 中
     - 场景：用于数据缓存中
 - `Set`: 不能包含重复元素的集合
-  - HashSet: 
+  - HashSet:
     - 数据结构： `基于哈希表`
     - 特点：存取无序
   - TreeSet
@@ -183,7 +183,7 @@ public static void quickSort(int[] arr, int head, int tail) {
   - LinkedHashSet
     - 数据结构： `基于链表和哈希表`
     - 特点：存取有序
-  - EnumSet: 
+  - EnumSet:
     - 特点：值为枚举类型的Set
   - BitSet
 - `Queue/Deque`: 队列
@@ -367,12 +367,12 @@ public static void quickSort(int[] arr, int head, int tail) {
   }
   ```
 
-- 线程池 
+- 线程池
   - 简介：与 `Runnable` 或 `Callable` 任务分开存在的一堆工作线程，由 `executorService` 管理
   - 机制：任务通过 `Blocking Queue` 提交到线程池
     - 如果任务的数量大过活动线程数量，则会将他插入 `Blocking Queue` 中，一直等到有可用线程为止
     - 如果 `Blocking Queue` 已满，则拒绝新任务
-  - Code 
+  - Code
     - [ScheduledExecutorsExample.java](code/java/src/cn/todev/examples/concurrency/ScheduledExecutorsExample.java)
     - [ScheduledExecutorsPeriodicExample.java](code/java/src/cn/todev/examples/concurrency/ScheduledExecutorsPeriodicExample.java)
 
@@ -757,7 +757,7 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 #### 关键术语和概念
 
-- `视频` - 泛指将一系列的静态影像以电信号方式加以捕捉、纪录、处理、存储、发送与重现的各种技术 
+- `视频` - 泛指将一系列的静态影像以电信号方式加以捕捉、纪录、处理、存储、发送与重现的各种技术
 - `帧率` - 用于测量显示帧数的量度
   - 单位：
     - FPS（每秒显示帧数） - 一般来说 FPS 用于描述影片、电子绘图或游戏每秒播放多少帧
@@ -800,9 +800,10 @@ public static void quickSort(int[] arr, int head, int tail) {
 ### 外设篇
 
 #### [低功耗蓝牙(Bluetooth Low Energy)](https://developer.android.com/guide/topics/connectivity/bluetooth-le)
+
 - 关键术语和概念
   - 通用属性配置文件 `Generic Attribute Profile` (GATT) - GATT 配置文件是一种通用规范，内容针对在 BLE 链路上发送和接收称为“属性”的简短数据片段
-  - 属性协议 `Attribute Protocol ` (ATT) — 属性协议 (ATT) 是 GATT 的构建基础，二者的关系也被称为 GATT/ATT
+  - 属性协议 `Attribute Protocol` (ATT) — 属性协议 (ATT) 是 GATT 的构建基础，二者的关系也被称为 GATT/ATT
   - 特征 `Characteristic` — 特征包含一个值和 0 至 n 个描述特征值的描述符
   - 描述符 `Descriptor` — 描述符是描述特征值的已定义属性
   - 服务 `Service` - 服务是一系列特征
@@ -810,10 +811,12 @@ public static void quickSort(int[] arr, int head, int tail) {
   - 设置 `BLE`
     - 获取 `BluetoothAdapter`
     - 启用蓝牙
-    ```kotlin
-    val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
-    ```
+
+        ```kotlin
+        val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+        startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
+        ```
+
   - 查找 `BLE` 设备
     - 方法
       - `startLeScan(BluetoothAdapter.LeScanCallback)` - 查找 BLE 设备
@@ -822,67 +825,71 @@ public static void quickSort(int[] arr, int head, int tail) {
       - 找到所需设备后，立即停止扫描
       - 绝对不进行循环扫描，并设置扫描时间限制
     - Code
-    ```kotlin
-    private var mScanning: Boolean = false
 
-    //返回扫描结果
-    private val leScanCallback = BluetoothAdapter.LeScanCallback { device, rssi, scanRecord ->
-        runOnUiThread {
-            //todo
+        ```kotlin
+        private var mScanning: Boolean = false
+
+        //返回扫描结果
+        private val leScanCallback = BluetoothAdapter.LeScanCallback { device, rssi, scanRecord ->
+            runOnUiThread {
+                //todo
+            }
         }
-    }
 
-    //在预定义的扫描时间段后停止扫描
-    handler.postDelayed({
-        mScanning = false
-        bluetoothAdapter.stopLeScan(leScanCallback)
-    }, 10000)
-    mScanning = true
-    bluetoothAdapter.startLeScan(leScanCallback)
-    ```
+        //在预定义的扫描时间段后停止扫描
+        handler.postDelayed({
+            mScanning = false
+            bluetoothAdapter.stopLeScan(leScanCallback)
+        }, 10000)
+        mScanning = true
+        bluetoothAdapter.startLeScan(leScanCallback)
+        ```
+
   - 连接 GATT 服务器
     - 方法 `BluetoothGatt connectGatt (Context context, boolean autoConnect, BluetoothGattCallback callback)`
     - Code
-    ```kotlin
-    private val gattCallback = object : BluetoothGattCallback() {
-        override fun onConnectionStateChange(
-                gatt: BluetoothGatt,
-                status: Int,
-                newState: Int
-        ) {
 
-        }
+        ```kotlin
+        private val gattCallback = object : BluetoothGattCallback() {
+            override fun onConnectionStateChange(
+                    gatt: BluetoothGatt,
+                    status: Int,
+                    newState: Int
+            ) {
 
-        // New services discovered
-        override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
-            when (status) {
-                BluetoothGatt.GATT_SUCCESS -> broadcastUpdate(ACTION_GATT_SERVICES_DISCOVERED)
-                else -> Log.w(TAG, "onServicesDiscovered received: $status")
+            }
+
+            // New services discovered
+            override fun onServicesDiscovered(gatt: BluetoothGatt, status: Int) {
+                when (status) {
+                    BluetoothGatt.GATT_SUCCESS -> broadcastUpdate(ACTION_GATT_SERVICES_DISCOVERED)
+                    else -> Log.w(TAG, "onServicesDiscovered received: $status")
+                }
+            }
+
+            // Result of a characteristic read operation
+            override fun onCharacteristicRead(
+                    gatt: BluetoothGatt,
+                    characteristic: BluetoothGattCharacteristic,
+                    status: Int
+            ) {
+                when (status) {
+                        BluetoothGatt.GATT_SUCCESS -> {
+                            broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic)
+                        }
+                }
+            }
+
+            // Characteristic notification
+            override fun onCharacteristicChanged(
+                    gatt: BluetoothGatt,
+                    characteristic: BluetoothGattCharacteristic
+            ) {
+                broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic)
             }
         }
+        ```
 
-        // Result of a characteristic read operation
-        override fun onCharacteristicRead(
-                gatt: BluetoothGatt,
-                characteristic: BluetoothGattCharacteristic,
-                status: Int
-        ) {
-            when (status) {
-                    BluetoothGatt.GATT_SUCCESS -> {
-                        broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic)
-                    }
-            }
-        }
-
-        // Characteristic notification
-        override fun onCharacteristicChanged(
-                gatt: BluetoothGatt,
-                characteristic: BluetoothGattCharacteristic
-        ) {
-            broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic)
-        }
-    }
-    ```
   - 读取 BLE 属性
   - 接收 GATT 通知 - `setCharacteristicNotification()`
   - 关闭客户端应用 - `close()`
@@ -898,58 +905,55 @@ public static void quickSort(int[] arr, int head, int tail) {
       - `baudrate` - 波特率
       - `flags` - 文件操作的标志
     - 流程  
-      - JNI - `FileDescriptor open(String path, int baudrate, int flags)` 
+      - JNI - `FileDescriptor open(String path, int baudrate, int flags)`
       - C - `int open(const char * pathname, int flags)`
         - `pathname` - 指向欲打开的文件路径字符串
         - `flags` - 文件的打开打开方式: O_RDONLY 以只读方式打开文件O_WRONLY 以只写方式打开文件O_RDWR 以可读写方式打开文件
         - `return` 若所有欲核查的权限都通过了检查则返回0 值, 表示成功, 只要有一个权限被禁止则返回-1
   - 读数据 - `getInputStream()`
-    ```java
-    class ReadThread extends Thread {
-        @Override
-        public void run() {
-            super.run();
-            while(!isInterrupted()) {
-                int size;
-                try {
-                    byte[] buffer = new byte[64];
-                    if (getInputStream() == null) return;
-                    size = getInputStream().read(buffer);
-                    if (size > 0) {
-                        onDataReceived(buffer, size);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    return;
-                }
-            }
-        }
-    }
-    ``` 
+
+      ```java
+      class ReadThread extends Thread {
+          @Override
+          public void run() {
+              super.run();
+              while(!isInterrupted()) {
+                  int size;
+                  try {
+                      byte[] buffer = new byte[64];
+                      if (getInputStream() == null) return;
+                      size = getInputStream().read(buffer);
+                      if (size > 0) {
+                          onDataReceived(buffer, size);
+                      }
+                  } catch (IOException e) {
+                      e.printStackTrace();
+                      return;
+                  }
+              }
+          }
+      }
+      ```
+
   - 写数据 - `getOutputStream()`
-    ```java
-    String commandStr = "";
-    FileOutputStream mOutputStream = getOutputStream();
-    byte[] text = StringUtils.hexStringToBytes(commandStr);
-    try {
-        mOutputStream.write(text);
-        mOutputStream.flush();
-    } catch (IOException e) {
-        e.printStackTrace();
-    }
-    ```     
+
+      ```java
+      String commandStr = "";
+      FileOutputStream mOutputStream = getOutputStream();
+      byte[] text = StringUtils.hexStringToBytes(commandStr);
+      try {
+          mOutputStream.write(text);
+          mOutputStream.flush();
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+      ```
+
 - `SerialPortFinder` - 获取硬件地址的类
 - 常见问题
   - 包名 - `android_serialport_api`
   - 写入权限时，`/system/xbin/su` or `/system/bin/su`
   - 设备需要 Root 权限
-
-
-
-
-
-
-
 
 ## Flutter
 
@@ -1050,41 +1054,57 @@ source .zshrc
 > [Google 搜索帮助文档](https://support.google.com/websearch/answer/2466433)
 
 - 完全匹配 - `""`
-  ```
+
+  ```text
   "关键字"
   "最高的建筑"
   ```
+
 - 排除关键字 - `-`
-  ```
+
+  ```text
   关键字 -排除关键字
   中国美食 -麻辣
   ```
+
 - 组合搜索 - `OR`
-  ```
+
+  ```text
   关键字 OR 关键字
   马拉松 OR 比赛
   ```
+
 - 搜索特定网站 - `site:`
-  ```
+
+  ```text
   关键字 site:网址
   美女 site:youtube.com
   ```
+
 - 文件类型 - `filetype:`
-  ```
+
+  ```text
   关键字 filetype:文件类型
   ```
+
 - 模糊匹配 - `*`
-  ```
+
+  ```text
   关键字*关键字
   ```  
+
 - 搜索 # 标签  - `#`
-  ```
+
+  ```text
   #关键字
   ```
+
 - 同义词 - `~`
-  ```
+
+  ```text
   关键字 ~同义关键字
   ```  
+
 - 关键词 - `intitle`  
 
 ### MySql
@@ -1096,7 +1116,9 @@ source .zshrc
 #### [概要](docs/tool/git.md)
 
 #### 设置 Git 代理
+
 - 设置
+
   ```bash
   git config --global http.proxy http://127.0.0.1:1087
   git config --global https.proxy https://127.0.0.1:1087
@@ -1105,7 +1127,9 @@ source .zshrc
   git config --global http.https://github.com.proxy http://127.0.0.1:1087
   git config --global https.https://github.com.proxy https://127.0.0.1:1087
   ```
+
 - 取消
+
   ```bash
   git config --global --unset http.proxy
   git config --global --unset https.proxy
@@ -1114,6 +1138,7 @@ source .zshrc
   git config --global --unset http.https://github.com.proxy
   git config --global --unset https.https://github.com.proxy
   ```
+
 - 设置终端临时代理
 
   ```bash
@@ -1121,7 +1146,9 @@ source .zshrc
   export https_proxy=http://127.0.0.1:1080
   curl https://www.google.com # 测试
   ```
+
 #### [Commit Message 规范](docs/tool/git-commit-message-specification.md)
+
 ```bash
 <type>[optional scope]: <description>
 
@@ -1129,6 +1156,7 @@ source .zshrc
 
 [optional footer(s)]
 ```
+
 ```bash
 # head: <type>(<scope>): <subject>
 # - type: feat, fix, docs, style, refactor, test, chore
@@ -1140,7 +1168,7 @@ source .zshrc
 # * How does it address the problem?
 # * Are there any side effects?
 #
-# footer: 
+# footer:
 # - Include a link to the ticket, if any.
 # - BREAKING CHANGE
 #
