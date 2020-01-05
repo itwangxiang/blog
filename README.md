@@ -16,6 +16,7 @@
   - [外设篇](#外设篇)
     - [低功耗蓝牙](#低功耗蓝牙Bluetooth-Low-Energy)
     - [串口通信](#串口通信)
+- [Flutter](#Flutter)
 - [Go](#Go)
   - [交叉编译](#交叉编译)
 - [VPS](#VPS)
@@ -448,7 +449,7 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 ### 系统架构图
 
-<img src="asset/img/android_system_structure.png" height="900" width="600">
+![图片](asset/img/android_system_structure.png =250x)
 
 ### 基础篇
 
@@ -943,6 +944,18 @@ public static void quickSort(int[] arr, int head, int tail) {
   - 写入权限时，`/system/xbin/su` or `/system/bin/su`
   - 设备需要 Root 权限
 
+
+
+
+
+
+
+
+## Flutter
+
+### 基础
+
+#### 安装
 
 ## Go
 
