@@ -8,6 +8,9 @@
 - [Java](#Java) - [思维导图](mind/Java.pdf)
   - [集合](#集合)
   - [并发](#并发)
+- [Kotlin](docs/language/kotlin.md)
+  - [基础](docs/language/kotlin.md#基础)
+    - [语法](docs/language/kotlin.md#语法)
 - [Android](#Android) - [思维导图](mind/Android.pdf)
   - [基础篇](#基础篇)
   - [原理篇](#原理篇)
@@ -959,7 +962,21 @@ public static void quickSort(int[] arr, int head, int tail) {
 
 ### 基础
 
-#### 安装
+#### [安装](https://flutter.dev/docs/get-started/install)
+
+- window
+  - `PATH` environment
+
+    ```bash
+    # 临时设置环境
+    $Env:path += ";D:\_SDK\flutter\bin"
+
+    # 授权系统执行脚本权限
+    $set-executionpolicy remotesigned
+
+    # 为当前用户设置环境
+    $Add-Content -Path $Profile.CurrentUserAllHosts -Value '$Env:Path += ";D:\_SDK\flutter\bin"'
+    ```
 
 ## Go
 
