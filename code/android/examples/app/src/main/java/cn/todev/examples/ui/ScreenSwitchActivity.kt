@@ -28,7 +28,7 @@ class ScreenSwitchActivity : AppCompatActivity() {
         LogUtils.e("onResume")
     }
 
-    override fun onConfigurationChanged(newConfig: Configuration?) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
 
         LogUtils.e("onConfigurationChanged: isLandscape -> " + ScreenUtils.isLandscape())
