@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         val decryptDataSource = AesCipherDataSource("1234567890123456".toByteArray(), baseDataSource)
 
         val mp3Source = ProgressiveMediaSource.Factory { decryptDataSource }
-                .createMediaSource(Uri.parse("https://todev-s.oss-cn-shanghai.aliyuncs.com/ge_aes_ctr_no_padding.aes"))
+                .createMediaSource(Uri.parse(encryptPath))
 
         // Prepare the player with the source.
         player.prepare(mp3Source)
