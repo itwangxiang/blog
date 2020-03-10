@@ -1,6 +1,5 @@
 package cn.todev.exoplay
 
-import java.nio.ByteBuffer
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
@@ -20,7 +19,7 @@ class AesUtils(private val transformation: String = "AES/CTR/NoPadding", key: St
                 i++
             }
             keySpec = SecretKeySpec(buf, "AES")
-            ivSpec = IvParameterSpec(getInitializationVector(0,0))
+            ivSpec = IvParameterSpec(ByteArray(16))
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -57,9 +56,5 @@ class AesUtils(private val transformation: String = "AES/CTR/NoPadding", key: St
             e.printStackTrace()
         }
         return byteArrayOf()
-    }
-
-    fun getInitializationVector(nonce: Long, counter: Long): ByteArray {
-        return ByteBuffer.allocate(16).putLong(nonce).putLong(counter).array()
     }
 }
