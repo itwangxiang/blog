@@ -35,6 +35,7 @@
   - [Mysql](#Mysql)
   - [Git](#git)
     - [设置 Git 代理](#设置-Git-代理)
+    - [设置 Git SSH 代理](#设置-Git-SSH-代理)
     - [Commit Message 规范](#Commit-Message-规范)
   - [Vim](#vim)
   - [ADB](#adb)
@@ -1164,6 +1165,30 @@ source .zshrc
   export https_proxy=http://127.0.0.1:1080
   curl https://www.google.com # 测试
   ```
+
+#### 设置 Git SSH 代理
+
+```bash
+# 这里的 -a none 是 NO-AUTH 模式，参见 https://bitbucket.org/gotoh/connect/wiki/Home 中的 More detail 一节
+ProxyCommand connect -S 127.0.0.1:1080 -a none %h %p
+
+Host github.com
+  User git
+  Port 22
+  Hostname github.com
+  # 注意修改路径为你的路径
+  IdentityFile "C:\Users\bookey\.ssh\id_rsa"
+  TCPKeepAlive yes
+
+Host ssh.github.com
+  User git
+  Port 443
+  Hostname ssh.github.com
+  # 注意修改路径为你的路径
+  IdentityFile "C:\Users\bookey\.ssh\id_rsa"
+  TCPKeepAlive yes
+```
+
 
 #### [Commit Message 规范](docs/tool/git-commit-message-specification.md)
 
