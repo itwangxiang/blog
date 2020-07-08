@@ -30,6 +30,7 @@
   - [Ubuntu](#ubuntu)
   - [Centos](#centos)
   - [Nginx](#nginx)
+  - [Docker](#docker)
 - [Tool](#Tool)
   - [Google 搜索技巧](#Google-搜索技巧)
   - [Mysql](#Mysql)
@@ -1065,6 +1066,18 @@ source .zshrc
 ### Nginx
 
 - [概要](docs/vps/nginx.md)
+
+### Docker
+
+[log](https://docs.docker.com/engine/reference/commandline/logs/)
+
+> docker logs [OPTIONS] CONTAINER
+
+- options
+   - `--details` 
+   - `--follow , -f` - 跟踪日志输出
+   - `--tail` - 从日志末尾开始显示的行数
+   - `--since` - 显示自时间戳记以来的日志（例如2013-01-02T13：23：37）或相对时间（例如42m，持续42分钟）
 
 ## Tool
 
