@@ -3,7 +3,7 @@
 
 ## 系统架构图
 
-![android_system_structure](asset/img/android_system_structure.png)
+![android_system_structure](/asset/img/android_system_structure.png)
 
 ## 基础篇
 
